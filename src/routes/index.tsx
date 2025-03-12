@@ -23,7 +23,7 @@ export default function Router() {
                         {
                             path: 'restaurants', 
                             children: [
-                                { path: "", element: <Navigate to="list" replace /> }, // Redirect /admin → /admin/dashboard
+                                { path: "", element: <Navigate to="list" replace /> },
                                 {path: 'list', element: <RestaurantList />},
                             ]
                         },
@@ -31,7 +31,7 @@ export default function Router() {
                             path: 'users', 
                             element: <UserList />,
                             children: [
-                                { path: "", element: <Navigate to="list" replace /> }, // Redirect /admin → /admin/dashboard
+                                { path: "", element: <Navigate to="list" replace /> },
                                 {path: 'list', element: <UserList />},
                             ]
                         },
