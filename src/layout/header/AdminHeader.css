@@ -1,0 +1,32 @@
+.admin-header {
+    color: var(--text-color);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    transition: background-color 0.3s ease-in-out;
+  }
+  
+  .admin-header.scrolled {
+    background-color: var(--bg-color-rgb);
+    height: var(--scrolled-header-height);
+  }
+  
+  .admin-header.default {
+    background-color: var(--bg-color);
+    height: var(--header-height);
+  }
+  
+  .header-actions {
+    width: 100%;
+  }
+  
+  .setting-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .avatar {
+    cursor: pointer;
+    color: white;
+  }
