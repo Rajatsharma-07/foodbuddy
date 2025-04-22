@@ -5,7 +5,7 @@ import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 import reportWebVitals from './reportWebVitals';
 import { ThemeProvider } from './theme/ThemeContext';
-import Layout from './layout/Layout';
+import Layout from './layout/AdminLayout';
 import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(

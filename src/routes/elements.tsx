@@ -12,6 +12,10 @@ const Loadable = (Component: ElementType) => (props: any) =>
   </Suspense>
 );
 
+// --------------------------Admin Auth Routes---------------------------
+
+export const AdminLogin = Loadable(lazy(() => import('../pages/users/auth/Login')));
+
 // ----------------------------------------------------------------------
 
 export const Dashboard = Loadable(lazy(() => import('../pages/dashboard')));

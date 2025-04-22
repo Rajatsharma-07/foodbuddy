@@ -10,13 +10,14 @@ type props = {
 };
 
 const ThemeDrawer = ({ open, setOpen }: props) => {
-    const [value, setValue] = useState(1);
-    const [themeColor, setThemeColor] = useState("#078DEE")
-
     const themeContext = useContext(ThemeContext);
+    
+    const [value, setValue] = useState(themeContext?.themeMode === 'light' ? 1 : 2);
+    const [themeColor, setThemeColor] = useState(themeContext?.primaryColor)
+    
     if (!themeContext) return <p>Loading...</p>;
-
     const { themeMode, primaryColor, toggleTheme, changePrimaryColor } = themeContext;
+
 
     const onChange = (e: RadioChangeEvent) => {
         setValue(e.target.value);
