@@ -1,10 +1,10 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Avatar, Dropdown, Flex, Layout, MenuProps } from "antd";
 import { LogoutOutlined, SettingOutlined, UserOutlined } from '@ant-design/icons';
-import ThemeDrawer from "./ThemeDrawer";
+import { Avatar, Dropdown, Flex, Layout, MenuProps } from "antd";
+import { useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../theme/ThemeContext";
-import { HEADER_HEIGHT, SCROLLED_HEADER_HEIGHT } from "../../constants/constants";
+import { logout } from "../../utils/api/user/user";
 import "./AdminHeader.css"; // Import CSS file
+import ThemeDrawer from "./ThemeDrawer";
 
 const { Header } = Layout;
 
@@ -46,12 +46,18 @@ const AdminHeader = () => {
 
   const { primaryColor } = themeContext;
 
+  const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
+    if (key === '2') {
+      await logout(); // 👈 trigger logout on "Logout" item click
+    }
+  };
+
   return (
     <Header className={`admin-header ${isScrolled ? "scrolled" : "default"}`}>
       <Flex gap="large" align="end" justify="end" className="header-actions">
         <Flex justify={'center'} align={'center'} gap="large">
           <SettingOutlined className="setting-icon" onClick={() => setOpen(true)} />
-          <Dropdown menu={{ items }} trigger={['click']}>
+          <Dropdown menu={{ items, onClick: handleMenuClick }} trigger={['click']}>
             <Avatar size={40} className="avatar" style={{ backgroundColor: primaryColor }}>
               U
             </Avatar>

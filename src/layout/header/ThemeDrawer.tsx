@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import { Avatar, Card, Drawer, Flex, Radio, RadioChangeEvent, Segmented, theme } from "antd";
+import { Avatar, Card, Drawer, Flex, Radio, RadioChangeEvent, Segmented } from "antd";
 import { MoonOutlined, SunOutlined } from "@ant-design/icons";
 import { ThemeContext } from "../../theme/ThemeContext";
 
@@ -16,7 +16,7 @@ const ThemeDrawer = ({ open, setOpen }: props) => {
     const [themeColor, setThemeColor] = useState(themeContext?.primaryColor)
     
     if (!themeContext) return <p>Loading...</p>;
-    const { themeMode, primaryColor, toggleTheme, changePrimaryColor } = themeContext;
+    const { toggleTheme, changePrimaryColor } = themeContext;
 
 
     const onChange = (e: RadioChangeEvent) => {

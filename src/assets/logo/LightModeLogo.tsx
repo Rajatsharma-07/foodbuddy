@@ -1,6 +1,3 @@
-import { useContext } from "react";
-import { ThemeContext } from "../../theme/ThemeContext";
-
 type props = {
   bgColor: string;
   foodColor: string;
