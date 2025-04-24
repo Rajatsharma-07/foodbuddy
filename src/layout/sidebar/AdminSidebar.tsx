@@ -3,7 +3,7 @@ import { Layout, Menu } from "antd";
 import { ThemeContext } from "../../theme/ThemeContext";
 import DarkModeLogo from "../../assets/logo/DarkModeLogo";
 import LightModeLogo from "../../assets/logo/LightModeLogo";
-import { HEADER_HEIGHT } from "../../constants/constants";
+import { HEADER_HEIGHT } from "../../utils/constants/constants";
 import { navigationItems } from "./navigation/admin-sidebar-navigation";
 import { useLocation, useNavigate } from "react-router-dom";
 

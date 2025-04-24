@@ -1,32 +1,51 @@
 .admin-header {
-    color: var(--text-color);
-    padding: 15px;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    transition: background-color 0.3s ease-in-out;
-  }
-  
-  .admin-header.scrolled {
-    background-color: var(--bg-color-rgb);
-    height: var(--scrolled-header-height);
-  }
-  
-  .admin-header.default {
-    background-color: var(--bg-color);
-    height: var(--header-height);
-  }
-  
-  .header-actions {
-    width: 100%;
-  }
-  
-  .setting-icon {
-    font-size: 24px;
-    cursor: pointer;
-  }
-  
-  .avatar {
-    cursor: pointer;
-    color: white;
-  }
+  color: var(--text-color);
+  padding: 15px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.admin-header.scrolled {
+  background-color: var(--bg-color-rgb);
+  height: var(--scrolled-header-height);
+}
+
+.admin-header.default {
+  background-color: var(--bg-color);
+  height: var(--header-height);
+}
+
+.header-actions {
+  width: 100%;
+}
+
+.setting-icon {
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.avatar {
+  cursor: pointer;
+  color: white;
+}
+
+/* Override AntD dropdown menu styles */
+.ant-dropdown-menu {
+  background-color: var(--text-color) !important;
+  color: var(--bg-color) !important;
+}
+
+.ant-dropdown-menu-item {
+  color: var(--bg-color) !important;
+}
+
+.ant-dropdown-menu-item:hover {
+  background-color: var(--bg-color-hover, rgba(0, 0, 0, 0.05)) !important;
+}
+
+/* Optional: divider color */
+.ant-dropdown-menu-item-divider {
+  background-color: var(--border-color, #e8e8e8) !important;
+}

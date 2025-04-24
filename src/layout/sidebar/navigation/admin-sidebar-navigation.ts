@@ -1,5 +1,5 @@
 import React from "react";
-import { UserOutlined, DashboardOutlined, CoffeeOutlined, DollarOutlined,  } from '@ant-design/icons';
+import { UserOutlined, DashboardOutlined, CoffeeOutlined } from '@ant-design/icons';
 import { PATH_ADMIN } from "../../../routes/paths";
 
 export const navigationItems = [

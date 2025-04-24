@@ -4,6 +4,8 @@ import { AdminLogin, Dashboard, RestaurantList, UserList } from "./elements";
 import AdminLayout from "../layout/AdminLayout";
 import { Spin } from "antd";
 import AdminAuthLayout from "../layout/AdminAuthLayout";
+import AdminGuestGuard from "../guards/admin-guest-guard";
+import AdminAuthGuard from "../guards/admin-auth-guard";
 
 export default function Router() {
   return useRoutes([
@@ -17,19 +19,23 @@ export default function Router() {
             {
               path: "login",
               element: (
-                <AdminAuthLayout>
-                  <AdminLogin />
-                </AdminAuthLayout>
+                <AdminGuestGuard>
+                  <AdminAuthLayout>
+                    <AdminLogin />
+                  </AdminAuthLayout>
+                </AdminGuestGuard>
               ),
             },
             {
               path: "",
               element: (
-                <AdminLayout>
-                  <Suspense fallback={<Spin />}>
-                    <Outlet />
-                  </Suspense>
-                </AdminLayout>
+                <AdminAuthGuard>
+                  <AdminLayout>
+                    <Suspense fallback={<Spin />}>
+                      <Outlet />
+                    </Suspense>
+                  </AdminLayout>
+                </AdminAuthGuard>
               ),
               children: [
                 { path: "", element: <Navigate to="dashboard" replace /> }, // Redirect /admin → /admin/dashboard
@@ -43,7 +49,6 @@ export default function Router() {
                 },
                 {
                   path: "users",
-                  element: <UserList />,
                   children: [
                     { path: "", element: <Navigate to="list" replace /> },
                     { path: "list", element: <UserList /> },

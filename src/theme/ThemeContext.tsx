@@ -11,16 +11,18 @@ interface ThemeContextProps {
 export const ThemeContext = createContext<ThemeContextProps | null>(null);
 
 const getInitialThemeMode = (): "light" | "dark" => {
-  const saved = window.localStorage.getItem('themeMode');
+  const saved = window.localStorage.getItem("themeMode");
   return saved === "dark" ? "dark" : "light";
 };
 
 const getInitialPrimaryColor = (): string => {
-  return window.localStorage.getItem('primaryColor') || "#078DEE";
+  return window.localStorage.getItem("primaryColor") || "#078DEE";
 };
 
 export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
-  const [themeMode, setThemeMode] = useState<"light" | "dark">(getInitialThemeMode);
+  const [themeMode, setThemeMode] = useState<"light" | "dark">(
+    getInitialThemeMode
+  );
   const [primaryColor, setPrimaryColor] = useState(getInitialPrimaryColor);
 
   useEffect(() => {
@@ -33,24 +35,28 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
   };
 
   useEffect(() => {
-    window.localStorage.setItem('themeMode', themeMode)
-  }, [themeMode])
+    window.localStorage.setItem("themeMode", themeMode);
+    window.localStorage.setItem("primaryColor", primaryColor);
+  }, [themeMode, primaryColor]);
 
   const changePrimaryColor = (color: string) => {
-    window.localStorage.setItem('primaryColor', color);
+    window.localStorage.setItem("primaryColor", color);
     setPrimaryColor(color);
   };
 
   return (
-    <ThemeContext.Provider value={{ themeMode, primaryColor, toggleTheme, changePrimaryColor }}>
+    <ThemeContext.Provider
+      value={{ themeMode, primaryColor, toggleTheme, changePrimaryColor }}
+    >
       <ConfigProvider
         theme={{
-            token: { 
-                colorPrimary: primaryColor,
-                colorBgBase: themeMode === "dark" ? "var(--bg-color)" : "#fff", // Apply bg color
-                colorTextBase: themeMode === "dark" ? "var(--text-color)" : "#000", // Apply text color
-            },
-          algorithm: themeMode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
+          token: {
+            colorPrimary: primaryColor,
+            colorBgBase: themeMode === "dark" ? "var(--bg-color)" : "#fff", // Apply bg color
+            colorTextBase: themeMode === "dark" ? "var(--text-color)" : "#000", // Apply text color
+          },
+          algorithm:
+            themeMode === "dark" ? theme.darkAlgorithm : theme.defaultAlgorithm,
         }}
       >
         {children}

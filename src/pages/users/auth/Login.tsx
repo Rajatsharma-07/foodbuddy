@@ -1,17 +1,35 @@
 import React from "react";
 import type { FormProps } from "antd";
-import { Button, Card, Checkbox, Flex, Form, Input } from "antd";
+import { Button, Card, Checkbox, Form, Input, message } from "antd";
 import "./Login.css";
+import { login } from "../../../utils/api/user/user";
+import { LoginApiBodyPayload } from "../../../@types/users/user";
+import { useLocation, useNavigate } from "react-router-dom";
+import { PATH_ADMIN } from "../../../routes/paths";
 
 type FieldType = {
-  email?: string;
-  password?: string;
-  remember?: string;
+  email: string;
+  password: string;
+  remember: boolean;
 };
 
 const Login = () => {
-  const onFinish: FormProps<FieldType>["onFinish"] = (values) => {
-    console.log("Success:", values);
+  const [messageApi, contextHolder] = message.useMessage();
+  const location = useLocation();
+  const navigate = useNavigate();
+  const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
+    const data: LoginApiBodyPayload = {
+      ...values,
+      admin: location.pathname.includes("admin") ? true : false,
+    };
+    try {
+      await login(data);
+      messageApi.success("Login successful!");
+      navigate(PATH_ADMIN.dashboard);
+    } catch (error: any) {
+      console.log(error);
+      messageApi.error(error.message);
+    }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
@@ -20,51 +38,54 @@ const Login = () => {
     console.log("Failed:", errorInfo);
   };
   return (
-    <Card style={{ width: "40vw", height: "fit-content", top: 100 }}>
-      <Form
-        name="basic"
-        labelCol={{ span: 8 }}
-        wrapperCol={{ span: 16 }}
-        style={{ maxWidth: 600 }}
-        initialValues={{ remember: true }}
-        onFinish={onFinish}
-        onFinishFailed={onFinishFailed}
-        autoComplete="off"
-      >
-        <Form.Item<FieldType>
-          label="Email"
-          name="email"
-          rules={[
-            { required: true, message: "Please input your email!" },
-            { type: "email", message: "Please enter a valid email address!" },
-          ]}
+    <>
+      {contextHolder}
+      <Card style={{ width: "40vw", height: "fit-content", top: 100 }}>
+        <Form
+          name="basic"
+          labelCol={{ span: 8 }}
+          wrapperCol={{ span: 16 }}
+          style={{ maxWidth: 600 }}
+          initialValues={{ remember: true }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+          autoComplete="off"
         >
-          <Input />
-        </Form.Item>
+          <Form.Item<FieldType>
+            label="Email"
+            name="email"
+            rules={[
+              { required: true, message: "Please input your email!" },
+              { type: "email", message: "Please enter a valid email address!" },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-        <Form.Item<FieldType>
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: "Please input your password!" }]}
-        >
-          <Input.Password />
-        </Form.Item>
+          <Form.Item<FieldType>
+            label="Password"
+            name="password"
+            rules={[{ required: true, message: "Please input your password!" }]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-        <Form.Item<FieldType>
-          name="remember"
-          valuePropName="checked"
-          label={null}
-        >
-          <Checkbox>Remember me</Checkbox>
-        </Form.Item>
+          <Form.Item<FieldType>
+            name="remember"
+            valuePropName="checked"
+            label={null}
+          >
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
 
-        <Form.Item label={null}>
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-        </Form.Item>
-      </Form>
-    </Card>
+          <Form.Item label={null}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Card>
+    </>
   );
 };
 
