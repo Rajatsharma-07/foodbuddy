@@ -19,12 +19,18 @@ code {
   --bg-color: #fff;
   min-height: 100vh;
   --bg-color-rgb: rgba(255, 255, 255, 0.96);
+  --disabled-bg-color: rgba(0,0,0, 0.1);
+  --disabled-text-color: rgba(0, 0, 0, 0.65);
+  --disabled-border-color: var(--primary-color);
 }
 
 [data-theme="dark"] {
   --text-color: #fff;
   --bg-color: #001529;
   --bg-color-rgb: rgba(0, 21, 41, 0.96);
+  --disabled-bg-color: gray;
+  --disabled-text-color: rgba(255, 255, 255, 0.65);
+  --disabled-border-color: var(--primary-color);
 }
 
 body {
@@ -41,4 +47,447 @@ body {
 .ant-radio-wrapper {
   background: var(--bg-color) !important;
   color: var(--text-color) !important;
+}
+
+.ant-input,
+.ant-input-password input {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color) /* optional: adjust for dark theme */
+}
+
+.ant-input::placeholder,
+.ant-input-password input::placeholder {
+  color: rgba(128, 128, 128, 0.8); /* softer placeholder color */
+}
+
+.ant-input:focus,
+.ant-input-password input:focus {
+  border-color: var(--text-color) !important;
+  box-shadow: 0 0 0 2px rgba(7, 141, 238, 0.2); /* Optional: subtle glow */
+}
+
+.ant-checkbox-inner {
+    background-color: var(--bg-color) !important;
+    border-color: var(--text-color) !important;
+}
+  
+.ant-checkbox-checked .ant-checkbox-inner {
+background-color: var(--primary-color) !important;
+border-color: var(--text-color) !important;
+}
+
+.ant-form-item-label > label {
+    color: var(--text-color) !important;
+}
+
+/* Eye icon (visible and invisible) */
+.anticon-eye,
+.anticon-eye-invisible {
+  color: var(--text-color) !important;
+}
+
+/* Optional: focus border glow */
+.ant-input-affix-wrapper-focused {
+    box-shadow: 0 0 0 2px rgba(7, 141, 238, 0.2);
+    border-color: var(--text-color) !important;
+}
+
+/* Checkbox label text (like "Remember me") */
+.ant-checkbox-wrapper {
+    color: var(--text-color) !important;
+}
+  
+/* Handles background and text color for Input.Password */
+.ant-input-affix-wrapper {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color); /* Match normal input */
+}
+
+/* Fix placeholder inside password input */
+.ant-input-affix-wrapper input::placeholder {
+  color: rgba(128, 128, 128, 0.8);
+}
+
+/* Ensure focused password fields look the same */
+.ant-input-affix-wrapper-focused {
+  box-shadow: 0 0 0 2px rgba(7, 141, 238, 0.2);
+  border-color: var(--primary-color) !important;
+}
+
+.ant-input-affix-wrapper[disabled] {
+  background-color: var(--disabled-bg-color, #f5f5f5) !important;
+  border: 1px solid var(--disabled-border-color, #d9d9d9) !important;
+  color: var(--disabled-text-color, rgba(0, 0, 0, 0.25)) !important;
+  cursor: not-allowed;
+}
+
+.ant-checkbox-wrapper {
+  color: var(--text-color) !important;
+}
+
+/* Select input background and text */
+.ant-select-selector {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color) !important;
+}
+
+/* Placeholder text */
+.ant-select-selection-placeholder {
+  color: rgba(128, 128, 128, 0.8) !important;
+}
+
+/* Selected item */
+.ant-select-selection-item {
+  color: var(--text-color) !important;
+}
+
+/* Dropdown menu */
+.ant-select-dropdown {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color);
+}
+
+/* Options inside dropdown */
+.ant-select-item {
+  color: var(--text-color) !important;
+  background-color: var(--bg-color) !important;
+}
+
+/* Hovered or active option */
+.ant-select-item-option-active,
+.ant-select-item-option-selected {
+  background-color: rgba(7, 141, 238, 0.1) !important;
+  color: var(--text-color) !important;
+}
+
+/* Focused select */
+.ant-select-focused .ant-select-selector {
+  box-shadow: 0 0 0 2px rgba(7, 141, 238, 0.2);
+  border-color: var(--primary-color) !important;
+}
+
+/* Track (unchecked) */
+.ant-switch {
+  background-color: rgba(128, 128, 128, 0.4) !important;
+}
+
+/* Track (checked) */
+.ant-switch-checked {
+  background-color: var(--primary-color) !important;
+}
+
+/* Switch handle */
+.ant-switch-handle {
+  background-color: var(--bg-color) !important;
+}
+
+/* Optional: focus ring when toggled */
+.ant-switch:focus {
+  box-shadow: 0 0 0 2px rgba(7, 141, 238, 0.2);
+}
+
+.ant-switch-handle {
+  background-color: var(--bg-color) !important;
+  box-shadow: none !important;
+}
+
+/* Optional: improve contrast if bg and handle are too similar */
+.ant-switch {
+  border: none !important; /* optional: removes subtle border */
+}
+
+.ant-switch-handle {
+  background-color: lighten(var(--bg-color), 10%) !important; /* only works with preprocessor like LESS/SASS */
+}
+
+/* Base message styling */
+.ant-message-notice-content {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color) !important;
+  box-shadow: 0 0 8px rgba(7, 141, 238, 0.15);
+}
+
+/* Success */
+.ant-message-success .anticon {
+  color: var(--primary-color) !important;
+}
+
+/* Error */
+.ant-message-error .anticon {
+  color: #ff4d4f !important;
+}
+
+/* Warning */
+.ant-message-warning .anticon {
+  color: #faad14 !important;
+}
+
+/* Info */
+.ant-message-info .anticon {
+  color: var(--primary-color) !important;
+}
+
+/* Optional: override message text font weight or size */
+.ant-message-notice-content {
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* Base table styles */
+.ant-table {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+.ant-table-thead > tr > th {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border-bottom: 1px solid var(--text-color) !important;
+  font-weight: 600;
+}
+
+.ant-table-tbody > tr > td {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border-bottom: 1px solid var(--text-color) !important;
+}
+
+/* Highlight row on hover */
+.ant-table-tbody > tr:hover {
+  background-color: rgba(7, 141, 238, 0.1); /* optional: subtle hover effect */
+}
+
+/* Adjust pagination */
+.ant-pagination-item,
+.ant-pagination-prev,
+.ant-pagination-next {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color) !important;
+}
+
+.ant-pagination-item:hover,
+.ant-pagination-prev:hover,
+.ant-pagination-next:hover {
+  background-color: var(--primary-color) !important;
+  color: var(--bg-color) !important;
+}
+
+/* Styling for action buttons */
+.ant-btn-primary {
+  background-color: var(--primary-color) !important;
+  border-color: var(--primary-color) !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: darken(var(--primary-color), 10%) !important;
+  color: var(--text-color) !important
+}
+
+/* Optional: add styling for icon buttons (edit/delete) */
+.ant-btn > .anticon {
+  color: var(--text-color) !important;
+}
+
+.ant-btn > .anticon:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Checkbox column customization */
+.ant-checkbox-inner {
+  background-color: var(--bg-color) !important;
+  border-color: var(--text-color) !important;
+}
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--primary-color) !important;
+  border-color: var(--text-color) !important;
+}
+
+.ant-checkbox-wrapper {
+  color: var(--text-color) !important;
+}
+
+/* Base button styling */
+.ant-btn {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color) !important;
+  font-weight: 500;
+}
+/* Button active state */
+.ant-btn:active {
+  background-color: darken(var(--primary-color), 10%) !important;
+  border-color: darken(var(--primary-color), 10%) !important;
+  color: var(--bg-color) !important;
+}
+
+/* Primary button */
+.ant-btn-primary {
+  background-color: var(--primary-color) !important;
+  color: var(--bg-color) !important;
+  border: 1px solid var(--primary-color) !important;
+}
+
+/* Button icon */
+.ant-btn > .anticon {
+  color: var(--text-color) !important;
+}
+
+/* Disabled button */
+.ant-btn:disabled {
+  background-color: var(--disabled-bg-color) !important;
+  color: var(--disabled-text-color) !important;
+  border-color: darken(var(--disabled-border-color)) !important;
+}
+
+/* Base Typography styling */
+.ant-typography {
+  color: var(--text-color) !important;
+}
+
+/* Title (H1, H2, H3, etc.) */
+.ant-typography.ant-typography-title {
+  color: var(--text-color) !important;
+  font-weight: 600;
+}
+
+/* Paragraph */
+.ant-typography.ant-typography-paragraph {
+  color: var(--text-color) !important;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+/* Text (default for inline text) */
+.ant-typography.ant-typography-text {
+  color: var(--text-color) !important;
+  font-weight: 400;
+}
+
+/* For disabled Typography (like muted text) */
+.ant-typography-disabled {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Link Typography */
+.ant-typography a {
+  color: var(--primary-color) !important;
+  text-decoration: none;
+}
+
+.ant-typography a:hover {
+  color: darken(var(--primary-color), 10%) !important;
+  text-decoration: underline;
+}
+
+/* Customizing Typography Text Color for certain status (e.g., success, error) */
+.ant-typography-success {
+  color: rgb(0, 200, 0) !important; /* Success color */
+}
+
+.ant-typography-error {
+  color: rgb(255, 0, 0) !important; /* Error color */
+}
+
+/* General pagination styles */
+.ant-pagination-item,
+.ant-pagination-prev,
+.ant-pagination-next {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border: 1px solid var(--text-color) !important;
+  font-size: 14px; /* Adjust font size */
+}
+
+/* Disabled state styling */
+.ant-pagination-prev.ant-pagination-disabled,
+.ant-pagination-next.ant-pagination-disabled {
+  /* background-color: #f0f0f0 !important; */
+  color: rgba(128, 128, 128, 0.6) !important;
+  border-color: #d9d9d9 !important;
+}
+
+/* Style for individual page buttons */
+.ant-pagination-item {
+  border: 1px solid var(--text-color) !important;
+}
+
+/* Active page button */
+.ant-pagination-item-active {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+  border-color: var(--primary-color) !important;
+}
+
+/* Style for the first page button */
+.ant-pagination-item-1 {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+}
+
+/* Style for next/prev buttons with icons */
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  color: var(--text-color) !important;
+}
+
+.ant-pagination-item-1.ant-pagination-item-active {
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
+  border-color: var(--text-color) !important;
+}
+
+/* Style for sort icon */
+.ant-table-column-sorter {
+  color: var(--text-color) !important;
+}
+
+.ant-table-column-sorter:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Sort icon active state */
+.ant-table-column-sorter.ant-table-column-sorter-active {
+  color: var(--primary-color) !important;
+}
+
+/* Filter icon */
+.ant-table-filter-trigger {
+  color: var(--text-color) !important;
+}
+
+.ant-table-filter-trigger:hover {
+  color: var(--primary-color) !important;
+}
+
+/* Active filter icon state */
+.ant-table-filter-trigger .anticon {
+  color: var(--primary-color) !important;
+}
+
+/* Search icon in filter dropdown */
+.ant-table-filter-dropdown .ant-input-search {
+  color: var(--text-color) !important;
+  border-color: var(--text-color) !important;
+}
+
+.ant-table-filter-dropdown .ant-input-search:hover {
+  border-color: var(--primary-color) !important;
+}
+
+.ant-table-filter-dropdown .ant-input-search:focus {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 2px rgba(7, 141, 238, 0.2); /* Optional: Focus glow */
+}
+
+/* Optional: Apply some color changes when hovering over the filter icon */
+.ant-table-filter-trigger:hover .anticon,
+.ant-table-column-sorter:hover .anticon {
+  color: var(--primary-color) !important;
 }

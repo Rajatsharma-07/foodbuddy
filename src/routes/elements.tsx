@@ -19,5 +19,11 @@ export const AdminLogin = Loadable(lazy(() => import('../pages/users/auth/Login'
 // ----------------------------------------------------------------------
 
 export const Dashboard = Loadable(lazy(() => import('../pages/dashboard')));
-export const UserList = Loadable(lazy(() => import('../pages/users')));
+
+export const UserList = Loadable(lazy(() => import('../pages/users/list/user-list')));
+export const AddNewUser = Loadable(lazy(() => import('../pages/users/add/add-new-user')));
+export const UserDetail = Loadable(lazy(() => import('../pages/users/detail/user-detail')));
+export const UserEdit = Loadable(lazy(() => import('../pages/users/edit/user-edit')));
+
+
 export const RestaurantList = Loadable(lazy(() => import('../pages/restaurants')));

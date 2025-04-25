@@ -33,12 +33,12 @@
 
 /* Override AntD dropdown menu styles */
 .ant-dropdown-menu {
-  background-color: var(--text-color) !important;
-  color: var(--bg-color) !important;
+  background-color: var(--bg-color) !important;
+  color: var(--text-color) !important;
 }
 
 .ant-dropdown-menu-item {
-  color: var(--bg-color) !important;
+  color: var(--text-color) !important;
 }
 
 .ant-dropdown-menu-item:hover {

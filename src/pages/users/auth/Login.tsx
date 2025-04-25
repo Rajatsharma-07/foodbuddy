@@ -1,11 +1,9 @@
-import React from "react";
 import type { FormProps } from "antd";
 import { Button, Card, Checkbox, Form, Input, message } from "antd";
-import "./Login.css";
-import { login } from "../../../utils/api/user/user";
-import { LoginApiBodyPayload } from "../../../@types/users/user";
 import { useLocation, useNavigate } from "react-router-dom";
+import { LoginApiBodyPayload } from "../../../@types/users/user";
 import { PATH_ADMIN } from "../../../routes/paths";
+import { login } from "../../../utils/api/user/user";
 
 type FieldType = {
   email: string;

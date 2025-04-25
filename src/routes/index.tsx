@@ -1,6 +1,6 @@
 import React, { Suspense } from "react";
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
-import { AdminLogin, Dashboard, RestaurantList, UserList } from "./elements";
+import { AddNewUser, AdminLogin, Dashboard, RestaurantList, UserDetail, UserEdit, UserList } from "./elements";
 import AdminLayout from "../layout/AdminLayout";
 import { Spin } from "antd";
 import AdminAuthLayout from "../layout/AdminAuthLayout";
@@ -45,6 +45,7 @@ export default function Router() {
                   children: [
                     { path: "", element: <Navigate to="list" replace /> },
                     { path: "list", element: <RestaurantList /> },
+                    { path: "new", element: <RestaurantList /> },
                   ],
                 },
                 {
@@ -52,6 +53,9 @@ export default function Router() {
                   children: [
                     { path: "", element: <Navigate to="list" replace /> },
                     { path: "list", element: <UserList /> },
+                    { path: "new", element: <AddNewUser /> },
+                    { path: ":id", element: <UserDetail /> },
+                    { path: ":id/edit", element: <UserEdit /> },
                   ],
                 },
               ],

@@ -21,6 +21,9 @@ export const PATH_ADMIN = {
     dashboard: path(ADMIN_PATH, '/dashboard'),
     users: {
         list: path(ADMIN_PATH, '/users'),
+        new: path(ADMIN_PATH, '/users/new'),
+        detail: (id: number) => path(ADMIN_PATH, `/users/${id}`),
+        edit: (id: number) => path(ADMIN_PATH, `/users/${id}/edit`),
     },
     restaurants: {
         list: path(ADMIN_PATH, '/restaurants'),
