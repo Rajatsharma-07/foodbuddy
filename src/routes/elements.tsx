@@ -26,4 +26,7 @@ export const UserDetail = Loadable(lazy(() => import('../pages/users/detail/user
 export const UserEdit = Loadable(lazy(() => import('../pages/users/edit/user-edit')));
 
 
-export const RestaurantList = Loadable(lazy(() => import('../pages/restaurants')));
+export const RestaurantList = Loadable(lazy(() => import('../pages/restaurants/list/restaurant-list')));
+export const AddNewRestaurant = Loadable(lazy(() => import('../pages/restaurants/add/add-new-restaurant')));
+export const RestaurantDetail = Loadable(lazy(() => import('../pages/restaurants/detail/restaurant-detail')));
+export const RestaurantEdit = Loadable(lazy(() => import('../pages/restaurants/edit/restaurant-edit')));

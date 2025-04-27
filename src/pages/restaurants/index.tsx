@@ -6,7 +6,7 @@ const Restaurants = () => {
   useEffect(() => {
     const getRestaurants = async () => {
       try {
-        const response = await fetchRestaurantList();
+        const response = await fetchRestaurantList({});
         setRestaurantList(response.data);
       } catch (error: any) {
         message.error(error);
