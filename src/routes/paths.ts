@@ -27,5 +27,8 @@ export const PATH_ADMIN = {
     },
     restaurants: {
         list: path(ADMIN_PATH, '/restaurants'),
+        new: path(ADMIN_PATH, `/restaurants/new`),
+        detail: (id: number) => path(ADMIN_PATH, `/restaurants/${id}`),
+        edit: (id: number) => path(ADMIN_PATH, `/restaurants/${id}/edit`),
     },
 }

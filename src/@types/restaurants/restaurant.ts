@@ -7,6 +7,7 @@ export type Restaurant = {
     country: string;
     pincode: string;
     is_active: boolean;
+    updatedAt: string;
 }
 
 export type RestaurantInUserList = {

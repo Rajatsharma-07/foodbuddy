@@ -41,7 +41,7 @@ const UserForm = ({ add, detail, edit, user_data }: Props) => {
       setLoader(true);
       const getRestaurants = async () => {
         try {
-          const response = await fetchRestaurantList();
+          const response = await fetchRestaurantList({});
           setRestaurantList(response.data);
         } catch (error: any) {
           console.error(error);

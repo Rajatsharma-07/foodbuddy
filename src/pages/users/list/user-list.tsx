@@ -235,6 +235,16 @@ const Users = () => {
       ...useColumnSearchProps("id"),
     },
     {
+      title: "Active",
+      dataIndex: "is_active",
+      render: (is_active: boolean) =>
+        is_active ? (
+          <CheckCircleOutlined style={{ color: "rgb(0, 200, 0)" }} />
+        ) : (
+          <CloseCircleOutlined style={{ color: "rgb(255, 0, 0)" }} />
+        ),
+    },
+    {
       title: "First name",
       dataIndex: "first_name",
       sorter: true,
@@ -269,16 +279,6 @@ const Users = () => {
       ...useColumnSearchProps("email"),
     },
     {
-      title: "Active",
-      dataIndex: "is_active",
-      render: (is_active: boolean) =>
-        is_active ? (
-          <CheckCircleOutlined style={{ color: "rgb(0, 200, 0)" }} />
-        ) : (
-          <CloseCircleOutlined style={{ color: "rgb(255, 0, 0)" }} />
-        ),
-    },
-    {
       title: "Superuser status",
       dataIndex: "is_superuser",
       render: (is_superuser: boolean) =>
@@ -311,9 +311,6 @@ const Users = () => {
               textOverflow: "ellipsis",
               display: "inline-block",
               maxWidth: 150,
-              textDecoration: restaurant ? "underline" : "none",
-              cursor: restaurant ? "pointer" : "default",
-              color: restaurant ? "#1677ff" : "inherit",
             }}
           >
             {restaurant?.name || ""}
