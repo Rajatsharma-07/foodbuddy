@@ -34,9 +34,8 @@ const items: MenuProps["items"] = [
 const AdminHeader = () => {
   const [open, setOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { adminUser, isLoading } = useAdminUser();
+  const { adminUser, isLoading, updateAdminUser } = useAdminUser();
 
-  console.log(adminUser);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,7 +48,8 @@ const AdminHeader = () => {
 
   const handleMenuClick: MenuProps["onClick"] = async ({ key }) => {
     if (key === "2") {
-      await logout(); // 👈 trigger logout on "Logout" item click
+      await logout();
+      updateAdminUser();
     }
   };
 

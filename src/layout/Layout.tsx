@@ -20,7 +20,7 @@ const ResLayout = ({ children }: props) => {
           className={styles.content}
           style={{
             maxWidth: "100vw",
-            padding: "5px 40px",
+            padding: 24,
             backgroundColor: "white",
             color: "var(--text-color)",
             position: "relative",

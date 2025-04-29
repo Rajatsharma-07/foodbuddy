@@ -47,8 +47,7 @@ const items: MenuProps["items"] = [
 
 const ResHeader = () => {
   const [isScrolled, setIsScrolled] = useState(false);
-
-  const {user, isLoading} = useUser();
+  const {user, isLoading, updateUser} = useUser();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -62,6 +61,7 @@ const ResHeader = () => {
   const handleMenuClick: MenuProps["onClick"] = async ({ key }) => {
     if (key === "2") {
       await logout();
+      updateUser();
     }
   };
 

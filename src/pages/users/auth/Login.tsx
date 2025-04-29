@@ -15,6 +15,7 @@ import { PATHS } from "../../../routes/paths";
 import { useState } from "react";
 import "./Login.css";
 import { get_otp, login } from "../../../utils/api/user/user";
+import { useUser } from "../../../context/user-context";
 
 type FieldType = {
   phonenumber: number;
@@ -29,6 +30,7 @@ const Login = () => {
     phonenumber: 0,
     remember: false,
   });
+  const {updateUser} = useUser();
 
   const showModal = () => {
     setIsModalOpen(true);
@@ -46,6 +48,7 @@ const Login = () => {
       setIsModalOpen(false);
       setOtpCode("");
       navigate(PATHS.dashboard);
+      updateUser();
     } catch (error: any) {
       console.log(error);
       messageApi.error(error.message);
@@ -115,11 +118,16 @@ const Login = () => {
           autoComplete="off"
         >
           <Form.Item<FieldType>
-            label="Phone Number"
+            label={<span style={{ color: "black" }}>Phone Number</span>}
             name="phonenumber"
+            className="custom-phone-input"
             rules={[
               { required: true, message: "Please input your phonenumber!" },
               { len: 10, message: "Phone number should be 10 digits long!" },
+              {
+                pattern: /^[0-9]+$/,
+                message: "Phone number should only contain digits!",
+              },
             ]}
           >
             <Input />
@@ -130,7 +138,7 @@ const Login = () => {
             valuePropName="checked"
             label={null}
           >
-            <Checkbox>Remember me</Checkbox>
+            <Checkbox style={{ color: "black" }}>Remember me</Checkbox>
           </Form.Item>
 
           <Form.Item label={null}>

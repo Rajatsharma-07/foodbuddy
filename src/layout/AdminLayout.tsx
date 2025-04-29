@@ -17,7 +17,7 @@ const AdminLayout = ({ children }: props) => {
       <Layout>
         <AdminHeader />
         <Content
-        className={styles.content}
+          className={styles.content}
           style={{
             maxWidth: "100vw",
             padding: 24,

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { LoginApiBodyPayload } from "../../../@types/users/user";
 import { PATH_ADMIN } from "../../../routes/paths";
 import { get_otp, login } from "../../../utils/api/user/admin_user";
+import { useAdminUser } from "../../../context/admin-user-context";
 
 type FieldType = {
   phonenumber: number;
@@ -19,7 +20,7 @@ const Login = () => {
     phonenumber: 0,
     remember: false,
   });
-
+  const { updateAdminUser } = useAdminUser();
   const showModal = () => {
     setIsModalOpen(true);
   };
@@ -36,6 +37,7 @@ const Login = () => {
       setIsModalOpen(false);
       setOtpCode("");
       navigate(PATH_ADMIN.dashboard);
+      updateAdminUser();
     } catch (error: any) {
       console.log(error);
       messageApi.error(error.message);

@@ -130,3 +130,7 @@ body {
 .ant-select-focused .ant-select-selector {
   border-color: var(--primary-color) !important;
 }
+
+.ant-spin-dot-item {
+  background-color: var(--primary-color) !important;
+}
