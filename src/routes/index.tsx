@@ -4,7 +4,9 @@ import {
   AddNewRestaurant,
   AddNewUser,
   AdminLogin,
+  AdminUserList,
   Dashboard,
+  Login,
   RestaurantDetail,
   RestaurantEdit,
   RestaurantList,
@@ -17,13 +19,46 @@ import { Spin } from "antd";
 import AdminAuthLayout from "../layout/AdminAuthLayout";
 import AdminGuestGuard from "../guards/admin-guest-guard";
 import AdminAuthGuard from "../guards/admin-auth-guard";
+import GuestGuard from "../guards/guest-guard";
+import AuthGuard from "../guards/auth-guard";
+import ResLayout from "../layout/Layout";
 
 export default function Router() {
   return useRoutes([
     {
       path: "/",
       children: [
-        { path: "", element: <Navigate to="/admin" replace /> },
+        { path: "", element: <Navigate to="/login" replace /> },
+        {
+          path: "login",
+          element: (
+            <GuestGuard>
+              <Login />
+            </GuestGuard>
+          ),
+        },
+        {
+          path: "",
+          element: (
+            <AuthGuard>
+              <ResLayout>
+                <Suspense fallback={<Spin />}>
+                  <Outlet />
+                </Suspense>
+              </ResLayout>
+            </AuthGuard>
+          ),
+          children: [
+            {
+              path: "dashboard",
+              element: <Dashboard />,
+            },
+            {
+              path: "users",
+              element: <UserList />,
+            },
+          ],
+        },
         {
           path: "/admin",
           children: [
@@ -65,7 +100,7 @@ export default function Router() {
                   path: "users",
                   children: [
                     { path: "", element: <Navigate to="list" replace /> },
-                    { path: "list", element: <UserList /> },
+                    { path: "list", element: <AdminUserList /> },
                     { path: "new", element: <AddNewUser /> },
                     { path: ":id", element: <UserDetail /> },
                     { path: ":id/edit", element: <UserEdit /> },

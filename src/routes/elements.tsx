@@ -14,16 +14,21 @@ const Loadable = (Component: ElementType) => (props: any) =>
 
 // --------------------------Admin Auth Routes---------------------------
 
-export const AdminLogin = Loadable(lazy(() => import('../pages/users/auth/Login')));
+export const AdminLogin = Loadable(lazy(() => import('../pages/users/auth/AdminLogin')));
+export const Login = Loadable(lazy(() => import('../pages/users/auth/Login')));
 
 // ----------------------------------------------------------------------
 
 export const Dashboard = Loadable(lazy(() => import('../pages/dashboard')));
 
-export const UserList = Loadable(lazy(() => import('../pages/users/list/user-list')));
+// User pages for superuser user
+export const AdminUserList = Loadable(lazy(() => import('../pages/users/list/admin-user-list')));
 export const AddNewUser = Loadable(lazy(() => import('../pages/users/add/add-new-user')));
 export const UserDetail = Loadable(lazy(() => import('../pages/users/detail/user-detail')));
 export const UserEdit = Loadable(lazy(() => import('../pages/users/edit/user-edit')));
+
+//User pages for restaurant user
+export const UserList = Loadable(lazy(() => import('../pages/users/list/user-list')));
 
 
 export const RestaurantList = Loadable(lazy(() => import('../pages/restaurants/list/restaurant-list')));

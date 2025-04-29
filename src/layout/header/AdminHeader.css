@@ -30,22 +30,3 @@
   cursor: pointer;
   color: white;
 }
-
-/* Override AntD dropdown menu styles */
-.ant-dropdown-menu {
-  background-color: var(--bg-color) !important;
-  color: var(--text-color) !important;
-}
-
-.ant-dropdown-menu-item {
-  color: var(--text-color) !important;
-}
-
-.ant-dropdown-menu-item:hover {
-  background-color: var(--bg-color-hover, rgba(0, 0, 0, 0.05)) !important;
-}
-
-/* Optional: divider color */
-.ant-dropdown-menu-item-divider {
-  background-color: var(--border-color, #e8e8e8) !important;
-}

@@ -1,0 +1,11 @@
+.custom-sidebar-menu .ant-menu-item-selected {
+  background-color: #FF5722 !important;
+}
+
+.custom-sidebar-menu .ant-menu-item-selected a {
+  color: white !important; /* Optional: makes the text color white when selected */
+}
+
+.custom-sidebar-menu .ant-menu-item {
+    transition: background-color 0.5s;
+  }

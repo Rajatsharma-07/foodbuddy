@@ -14,7 +14,7 @@ import { Restaurant } from "../../../@types/restaurants/restaurant";
 import { UserData } from "../../../@types/users/user";
 import { createRestaurant, fetchRestaurantList, updateRestaurant } from "../../../utils/api/restaurant/restaurant";
 import { ROLES } from "../../../utils/constants/constants";
-import { createUser, updateUser } from "../../../utils/api/user/user";
+import { createUser, updateUser } from "../../../utils/api/user/admin_user";
 import { useNavigate, useParams } from "react-router-dom";
 import { PATH_ADMIN } from "../../../routes/paths";
 

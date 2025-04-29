@@ -1,6 +1,5 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Layout, Menu } from "antd";
-import { ThemeContext } from "../theme/ThemeContext";
 import "./AdminAuthLayout.css";
 import DarkModeLogo from "../assets/logo/DarkModeLogo";
 import LightModeLogo from "../assets/logo/LightModeLogo";
@@ -12,11 +11,6 @@ type props = {
 };
 
 const AdminAuthLayout = ({ children }: props) => {
-  const themeContext = useContext(ThemeContext);
-  if (!themeContext) return null;
-
-  const { themeMode, primaryColor } = themeContext;
-
   return (
     <Layout>
       <Header
@@ -27,23 +21,15 @@ const AdminAuthLayout = ({ children }: props) => {
           width: "100%",
           display: "flex",
           alignItems: "center",
-          background: primaryColor,
+          background: "var(--primary-color)",
         }}
       >
         <div className="demo-logo-vertical">
-          {themeMode === "dark" ? (
-            <DarkModeLogo
-              bgColor={primaryColor}
-              foodColor={"white"}
-              buddyColor={"white"}
-            />
-          ) : (
             <LightModeLogo
-              bgColor={primaryColor}
+              bgColor={"var(--primary-color)"}
               foodColor={"white"}
               buddyColor={"white"}
             />
-          )}
         </div>
         <Menu
           theme="dark"

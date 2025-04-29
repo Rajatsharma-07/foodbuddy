@@ -1,29 +1,73 @@
-import type { FormProps } from "antd";
-import { Button, Card, Checkbox, Form, Input, message } from "antd";
-import { useLocation, useNavigate } from "react-router-dom";
+import {
+  Button,
+  Card,
+  Checkbox,
+  Form,
+  FormProps,
+  Image,
+  Input,
+  message,
+  Modal,
+} from "antd";
+import { useNavigate } from "react-router-dom";
 import { LoginApiBodyPayload } from "../../../@types/users/user";
-import { PATH_ADMIN } from "../../../routes/paths";
-import { login } from "../../../utils/api/user/user";
+import { PATHS } from "../../../routes/paths";
+import { useState } from "react";
+import "./Login.css";
+import { get_otp, login } from "../../../utils/api/user/user";
 
 type FieldType = {
-  email: string;
-  password: string;
+  phonenumber: number;
   remember: boolean;
 };
 
 const Login = () => {
   const [messageApi, contextHolder] = message.useMessage();
-  const location = useLocation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [otpCode, setOtpCode] = useState<string>("");
+  const [formValues, setFormValues] = useState<FieldType>({
+    phonenumber: 0,
+    remember: false,
+  });
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = async () => {
+    try {
+      const data: LoginApiBodyPayload = {
+        phonenumber: formValues.phonenumber,
+        otp_code: otpCode,
+        remember: formValues?.remember,
+        admin: false,
+      };
+      await login(data);
+      setIsModalOpen(false);
+      setOtpCode("");
+      navigate(PATHS.dashboard);
+    } catch (error: any) {
+      console.log(error);
+      messageApi.error(error.message);
+    }
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+    setOtpCode("");
+  };
+
   const navigate = useNavigate();
   const onFinish: FormProps<FieldType>["onFinish"] = async (values) => {
-    const data: LoginApiBodyPayload = {
-      ...values,
-      admin: location.pathname.includes("admin") ? true : false,
-    };
     try {
-      await login(data);
-      messageApi.success("Login successful!");
-      navigate(PATH_ADMIN.dashboard);
+      const data = {
+        phonenumber: values.phonenumber,
+        is_admin: false,
+      };
+      const otp = await get_otp(data);
+      messageApi.success(otp.data);
+      setFormValues(values);
+      showModal();
     } catch (error: any) {
       console.log(error);
       messageApi.error(error.message);
@@ -35,10 +79,31 @@ const Login = () => {
   ) => {
     console.log("Failed:", errorInfo);
   };
+
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
       {contextHolder}
-      <Card style={{ width: "40vw", height: "fit-content", top: 100 }}>
+      <Image
+        src="/login-background.jpg"
+        width="100vw"
+        height="100vh"
+        preview={false}
+        style={{ position: "relative" }}
+      />
+      <Card
+        className="custom-login-card"
+        style={{
+          width: "30vw",
+          position: "absolute",
+          backgroundColor: "rgba(0, 255, 255, 0.9)",
+        }}
+      >
         <Form
           name="basic"
           labelCol={{ span: 8 }}
@@ -50,22 +115,14 @@ const Login = () => {
           autoComplete="off"
         >
           <Form.Item<FieldType>
-            label="Email"
-            name="email"
+            label="Phone Number"
+            name="phonenumber"
             rules={[
-              { required: true, message: "Please input your email!" },
-              { type: "email", message: "Please enter a valid email address!" },
+              { required: true, message: "Please input your phonenumber!" },
+              { len: 10, message: "Phone number should be 10 digits long!" },
             ]}
           >
             <Input />
-          </Form.Item>
-
-          <Form.Item<FieldType>
-            label="Password"
-            name="password"
-            rules={[{ required: true, message: "Please input your password!" }]}
-          >
-            <Input.Password />
           </Form.Item>
 
           <Form.Item<FieldType>
@@ -78,12 +135,28 @@ const Login = () => {
 
           <Form.Item label={null}>
             <Button type="primary" htmlType="submit">
-              Submit
+              Get OTP
             </Button>
           </Form.Item>
+
+          <Modal
+            title="Enter the OTP received on your phone"
+            okText="Verify OTP"
+            open={isModalOpen}
+            onOk={handleOk}
+            onCancel={handleCancel}
+          >
+            <p>Please enter the OTP to log in to Food Buddy!</p>
+            <Input
+              placeholder="OTP"
+              name="otp_code"
+              value={otpCode}
+              onChange={(e) => setOtpCode(e.target.value)}
+            />
+          </Modal>
         </Form>
       </Card>
-    </>
+    </div>
   );
 };
 

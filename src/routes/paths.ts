@@ -2,18 +2,14 @@ export default function path(root: string, sublink: string) {
     return `${root}${sublink}`;
 }
 const ADMIN_PATH = '/admin';
+const PATH = '/';
   
   // ----------------------------------------------------------------------
   
 export const PATH_AUTH = {
     adminLogin: '/admin/login',
-    login: '/retailer/login',
+    login: '/login',
     register: '/retailer/register',
-    loginWithOtp: '/retailer/login-with-otp',
-    adminLoginWithOtp: '/admin/login-with-otp',
-    adminForgotPassword: '/admin/forgot-password',
-    adminAddForgotPassword: (token: string) => `/admin/forgotpassword/${token}`,
-    adminVerifyOtpLoginCode: (phone_number: string) => `/admin/verify-code/${phone_number}`
 };
   
 export const PATH_ADMIN = {
@@ -31,4 +27,15 @@ export const PATH_ADMIN = {
         detail: (id: number) => path(ADMIN_PATH, `/restaurants/${id}`),
         edit: (id: number) => path(ADMIN_PATH, `/restaurants/${id}/edit`),
     },
+}
+
+export const PATHS = {
+    root: PATH,
+    dashboard: path(PATH, 'dashboard'),
+    users: {
+        list: path(PATH, 'users'),
+        new: path(PATH, 'users/new'),
+        detail: (id: number) => path(PATH, `users/${id}`),
+        edit: (id: number) => path(PATH, `users/${id}/edit`),
+    }
 }

@@ -1,10 +1,10 @@
 type props = {
   bgColor: string;
   foodColor: string;
-  buddyColor: string;
+  buddyColor?: string;
 };
 
-const DarkModeLogo = ({ bgColor, buddyColor, foodColor }: props) => {
+const DarkModeLogo = ({ bgColor, buddyColor="blue", foodColor }: props) => {
   return (
     <svg
       width="200"

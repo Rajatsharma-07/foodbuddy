@@ -1,26 +1,27 @@
 import { App as AntdApp } from "antd";
-import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import App from "./App";
+import { UserProvider } from "./context/user-context";
 import "./index.css";
 import reportWebVitals from "./reportWebVitals";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
-import { ThemeProvider } from "./theme/ThemeContext";
+import { AdminUserProvider } from "./context/admin-user-context";
 
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );
 
-
 root.render(
-    <BrowserRouter>
-      <ThemeProvider>
-        <AntdApp>
+  <BrowserRouter>
+    <AntdApp>
+      <AdminUserProvider>
+        <UserProvider>
           <App />
-        </AntdApp>
-      </ThemeProvider>
-    </BrowserRouter>
+        </UserProvider>
+      </AdminUserProvider>
+    </AntdApp>
+  </BrowserRouter>
 );
 
 // If you want your app to work offline and load faster, you can change

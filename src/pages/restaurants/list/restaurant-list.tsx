@@ -214,7 +214,7 @@ import { deleteRestaurant, fetchRestaurantList } from "../../../utils/api/restau
           );
         },
         filterIcon: (filtered: boolean) => (
-          <SearchOutlined style={{ color: filtered ? "#1677ff" : undefined }} />
+          <SearchOutlined style={{ color: filtered ? "var(--primary-color)" : undefined }} />
         ),
         onFilterDropdownOpenChange: (visible) => {
           if (visible) {
