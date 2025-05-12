@@ -1,6 +1,6 @@
 import { QueryParams } from "../../../@types/common/common";
 import { Restaurant } from "../../../@types/restaurants/restaurant";
-import axios from "../axios";
+import axios from "../admin_axios";
 
 export const fetchRestaurantList = async ({
   page,

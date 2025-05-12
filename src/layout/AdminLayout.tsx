@@ -1,6 +1,6 @@
 import React from "react";
 import { Layout } from "antd";
-import "./AdminLayout.css";
+import styles from "./AdminLayout.module.css";
 import AdminHeader from "./header/AdminHeader";
 import AdminSidebar from "./sidebar/AdminSidebar";
 
@@ -12,11 +12,12 @@ type props = {
 
 const AdminLayout = ({ children }: props) => {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
+    <Layout className="admin-layout-wrapper" style={{ minHeight: "100vh" }}>
       <AdminSidebar />
       <Layout>
         <AdminHeader />
         <Content
+          className={styles.content}
           style={{
             maxWidth: "100vw",
             padding: 24,

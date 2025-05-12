@@ -22,15 +22,13 @@ import {
   Typography,
 } from "antd";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { UserData } from "../../../@types/users/user";
-import { PATH_ADMIN } from "../../../routes/paths";
-import { deleteUser, fetchUserList } from "../../../utils/api/user/user";
+import { Link, useNavigate } from "react-router-dom";
 import { Pagination, Sorter } from "../../../@types/common/common";
-import { FilterDropdownProps } from "antd/es/table/interface";
-import { ColumnType } from "antd/lib/table";
+import { UserData } from "../../../@types/users/user";
+import { PATHS } from "../../../routes/paths";
+import { deleteUser, fetchUserList } from "../../../utils/api/user/user";
 
-const Users = () => {
+const UserList = () => {
   const [messageApi, contextHolder] = message.useMessage();
   const [userList, setUserList] = useState<UserData[]>([]);
   const [loader, setLoader] = useState<boolean>(false);
@@ -179,6 +177,7 @@ const Users = () => {
             />
             <Space>
               <Button
+                className="check"
                 type="primary"
                 onClick={() => {
                   confirm();
@@ -216,7 +215,7 @@ const Users = () => {
         );
       },
       filterIcon: (filtered: boolean) => (
-        <SearchOutlined style={{ color: filtered ? "#1677ff" : undefined }} />
+        <SearchOutlined style={{ color: filtered ? "var(--primary-color)" : undefined }} />
       ),
       onFilterDropdownOpenChange: (visible) => {
         if (visible) {
@@ -231,7 +230,11 @@ const Users = () => {
       title: "ID",
       dataIndex: "id",
       sorter: true,
-      render: (id: number) => <a href={PATH_ADMIN.users.detail(id)}>{id}</a>,
+      render: (id: number) => (
+        <Link className="primary-link" to={PATHS.users.detail(id)}>
+          {id}
+        </Link>
+      ),
       ...useColumnSearchProps("id"),
     },
     {
@@ -250,8 +253,9 @@ const Users = () => {
       sorter: true,
       render: (text: string, user: UserData) => (
         <Tooltip title={text}>
-          <a
-            href={PATH_ADMIN.users.detail(user.id)}
+          <Link
+            className="primary-link"
+            to={PATHS.users.detail(user.id)}
             style={{
               whiteSpace: "nowrap",
               overflow: "hidden",
@@ -261,7 +265,7 @@ const Users = () => {
             }}
           >
             {text}
-          </a>
+          </Link>
         </Tooltip>
       ),
       ...useColumnSearchProps("first_name"),
@@ -279,14 +283,10 @@ const Users = () => {
       ...useColumnSearchProps("email"),
     },
     {
-      title: "Superuser status",
-      dataIndex: "is_superuser",
-      render: (is_superuser: boolean) =>
-        is_superuser ? (
-          <CheckCircleOutlined style={{ color: "rgb(0, 200, 0)" }} />
-        ) : (
-          <CloseCircleOutlined style={{ color: "rgb(255, 0, 0)" }} />
-        ),
+      title: "Phone Number",
+      sorter: true,
+      dataIndex: "phonenumber",
+      ...useColumnSearchProps("phonenumber"),
     },
     {
       title: "Role",
@@ -296,26 +296,6 @@ const Users = () => {
         <Typography style={{ textTransform: "capitalize" }}>
           {role?.name}
         </Typography>
-      ),
-    },
-    {
-      title: "Restaurant",
-      dataIndex: "restaurant",
-      sorter: true,
-      render: (restaurant: { name: string } | null) => (
-        <Tooltip title={restaurant?.name || ""}>
-          <Typography
-            style={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "inline-block",
-              maxWidth: 150,
-            }}
-          >
-            {restaurant?.name || ""}
-          </Typography>
-        </Tooltip>
       ),
     },
     {
@@ -331,32 +311,13 @@ const Users = () => {
       title: "Actions",
       dataIndex: "actions",
       render: (text: any, user: UserData) => (
-        <Flex justify="space-evenly">
-          <Button
-            size="small"
-            icon={<EditOutlined />}
-            onClick={() => navigate(PATH_ADMIN.users.edit(user.id))}
-          >
-            Edit
-          </Button>
-          <Popconfirm
-            cancelText="No"
-            description="Are you sure to delete this user?"
-            disabled={!user.is_active}
-            okText="Yes"
-            placement="topLeft"
-            title="Delete the user"
-            onConfirm={() => handleDelete(user.id)}
-          >
-            <Button
-              size="small"
-              disabled={!user.is_active}
-              icon={<DeleteOutlined />}
-            >
-              Delete
-            </Button>
-          </Popconfirm>
-        </Flex>
+        <Button
+          size="small"
+          icon={<EditOutlined />}
+          onClick={() => navigate(PATHS.users.edit(user.id))}
+        >
+          Edit
+        </Button>
       ),
     },
   ];
@@ -386,7 +347,7 @@ const Users = () => {
         <Button
           type="primary"
           icon={<PlusOutlined />}
-          onClick={() => navigate(PATH_ADMIN.users.new)}
+          onClick={() => navigate(PATHS.users.new)}
         >
           Add new user
         </Button>
@@ -411,4 +372,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default UserList;

@@ -1,0 +1,10 @@
+/* For selected menu item */
+.ant-menu-item-selected {
+    background-color: color-mix(in srgb, var(--primary-color) 20%, white) !important;
+    color: var(--primary-color) !important;
+  }
+  
+  /* Optional: icon color when selected */
+  .ant-menu-item-selected .anticon {
+    color: var(--primary-color) !important;
+  }

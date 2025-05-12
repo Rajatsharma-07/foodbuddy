@@ -19,3 +19,8 @@ export type QueryParams = {
   sort_field?: string;
   sort_order?: string;
 };
+
+export type GetOtpPayload = {
+  phonenumber: number;
+  is_admin: boolean;
+}

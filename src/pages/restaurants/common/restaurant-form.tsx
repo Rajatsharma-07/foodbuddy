@@ -1,5 +1,6 @@
 import {
   Button,
+  Card,
   Col,
   Flex,
   Form,
@@ -9,14 +10,14 @@ import {
   Select,
   Switch,
 } from "antd";
-import { useEffect, useState } from "react";
-import { Restaurant } from "../../../@types/restaurants/restaurant";
-import { UserData } from "../../../@types/users/user";
-import { createRestaurant, fetchRestaurantList, updateRestaurant } from "../../../utils/api/restaurant/restaurant";
-import { ROLES } from "../../../utils/constants/constants";
-import { createUser, updateUser } from "../../../utils/api/user/user";
+import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { Restaurant } from "../../../@types/restaurants/restaurant";
 import { PATH_ADMIN } from "../../../routes/paths";
+import {
+  createRestaurant,
+  updateRestaurant
+} from "../../../utils/api/restaurant/restaurant";
 
 const { Option } = Select;
 
@@ -73,121 +74,129 @@ const RestaurantForm = ({ add, detail, edit, restaurant_data }: Props) => {
   return (
     <>
       {contextHolder}
-      <Form
-        layout="vertical"
-        form={form}
-        onFinish={handleFinish}
-        initialValues={{
-          is_active: true,
-        }}
-      >
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="Name"
-              name="name"
-              rules={[{ required: true, message: "Please enter name" }]}
-            >
-              <Input
-                variant={detail ? "filled" : "outlined"}
-                disabled={isDisabled}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="Address"
-              name="address"
-              rules={[{ required: true, message: "Please enter the address" }]}
-            >
-              <Input
-                variant={detail ? "filled" : "outlined"}
-                disabled={isDisabled}
-              />
-            </Form.Item>
-          </Col>
-        </Row>
+      <Card>
+        <Form
+          layout="vertical"
+          form={form}
+          onFinish={handleFinish}
+          initialValues={{
+            is_active: true,
+          }}
+        >
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="Name"
+                name="name"
+                rules={[{ required: true, message: "Please enter name" }]}
+              >
+                <Input
+                  variant={detail ? "filled" : "outlined"}
+                  disabled={isDisabled}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Address"
+                name="address"
+                rules={[
+                  { required: true, message: "Please enter the address" },
+                ]}
+              >
+                <Input
+                  variant={detail ? "filled" : "outlined"}
+                  disabled={isDisabled}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
 
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="City"
-              name="city"
-              rules={[{ required: true, message: "Please enter the city" }]}
-            >
-              <Input
-                variant={detail ? "filled" : "outlined"}
-                disabled={isDisabled}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="State"
-              name="state"
-              rules={[{ required: true, message: "Please enter the state" }]}
-            >
-              <Input
-                variant={detail ? "filled" : "outlined"}
-                disabled={isDisabled}
-              />
-            </Form.Item>
-          </Col>
-        </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="City"
+                name="city"
+                rules={[{ required: true, message: "Please enter the city" }]}
+              >
+                <Input
+                  variant={detail ? "filled" : "outlined"}
+                  disabled={isDisabled}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="State"
+                name="state"
+                rules={[{ required: true, message: "Please enter the state" }]}
+              >
+                <Input
+                  variant={detail ? "filled" : "outlined"}
+                  disabled={isDisabled}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
 
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="Country"
-              name="country"
-              rules={[{ required: true, message: "Please enter the country" }]}
-            >
-              <Input
-                variant={detail ? "filled" : "outlined"}
-                disabled={isDisabled}
-              />
-            </Form.Item>
-          </Col>
-          <Col span={12}>
-            <Form.Item
-              label="Pincode"
-              name="pincode"
-              rules={[{ required: true, message: "Please enter the pincode" }]}
-            >
-              <Input
-                variant={detail ? "filled" : "outlined"}
-                disabled={isDisabled}
-              />
-            </Form.Item>
-          </Col>
-        </Row>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="Country"
+                name="country"
+                rules={[
+                  { required: true, message: "Please enter the country" },
+                ]}
+              >
+                <Input
+                  variant={detail ? "filled" : "outlined"}
+                  disabled={isDisabled}
+                />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Pincode"
+                name="pincode"
+                rules={[
+                  { required: true, message: "Please enter the pincode" },
+                ]}
+              >
+                <Input
+                  variant={detail ? "filled" : "outlined"}
+                  disabled={isDisabled}
+                />
+              </Form.Item>
+            </Col>
+          </Row>
 
-        <Row gutter={16}>
-          <Col span={12}>
-            <Form.Item
-              label="Is Active"
-              name="is_active"
-              valuePropName="checked"
-            >
-              <Switch disabled={isDisabled} />
-            </Form.Item>
-          </Col>
-        </Row>
-        {!detail && (
-          <Flex justify="end" align="center" gap={10}>
-            <Button
-              variant="outlined"
-              htmlType="submit"
-              onClick={() => navigate(-1)}
-            >
-              Cancel
-            </Button>
-            <Button type="primary" htmlType="submit">
-              {add ? "Create" : "Update"}
-            </Button>
-          </Flex>
-        )}
-      </Form>
+          <Row gutter={16}>
+            <Col span={12}>
+              <Form.Item
+                label="Is Active"
+                name="is_active"
+                valuePropName="checked"
+              >
+                <Switch disabled={isDisabled} />
+              </Form.Item>
+            </Col>
+          </Row>
+          {!detail && (
+            <Flex justify="end" align="center" gap={10}>
+              <Button
+                variant="outlined"
+                htmlType="submit"
+                onClick={() => navigate(-1)}
+              >
+                Cancel
+              </Button>
+              <Button type="primary" htmlType="submit">
+                {add ? "Create" : "Update"}
+              </Button>
+            </Flex>
+          )}
+        </Form>
+      </Card>
     </>
   );
 };

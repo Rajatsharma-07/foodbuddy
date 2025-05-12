@@ -1,0 +1,54 @@
+.header {
+    color: var(--text-color);
+    padding: 15px;
+    position: sticky;
+    top: 0;
+    z-index: 10000000000;
+    transition: background-color 0.3s ease-in-out;
+    border-bottom: 1px solid lightgray;
+  }
+  
+  .header.scrolled {
+    background-color: var(--bg-color-rgb);
+    height: 100px;
+    z-index: 10000000000;
+  }
+  
+  .header.default {
+    background-color: var(--bg-color);
+    height: 90px;
+  }
+  
+  .header-actions {
+    width: 100%;
+  }
+  
+  .setting-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .avatar {
+    cursor: pointer;
+    color: white;
+  }
+  
+  /* Override AntD dropdown menu styles */
+  .ant-dropdown-menu {
+    background-color: var(--bg-color) !important;
+    color: var(--text-color) !important;
+  }
+  
+  .ant-dropdown-menu-item {
+    color: var(--text-color) !important;
+  }
+  
+  .ant-dropdown-menu-item:hover {
+    background-color: var(--bg-color-hover, rgba(0, 0, 0, 0.05)) !important;
+  }
+  
+  /* Optional: divider color */
+  .ant-dropdown-menu-item-divider {
+    background-color: var(--border-color, #e8e8e8) !important;
+  }
+  
