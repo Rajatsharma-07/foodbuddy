@@ -339,19 +339,6 @@ import { deleteRestaurant, fetchRestaurantList } from "../../../utils/api/restau
       },
     ];
   
-    const rowSelection: TableProps<Restaurant>["rowSelection"] = {
-      onChange: (selectedRowKeys: React.Key[], selectedRows: Restaurant[]) => {
-        console.log(
-          `selectedRowKeys: ${selectedRowKeys}`,
-          "selectedRows: ",
-          selectedRows
-        );
-      },
-      getCheckboxProps: (record: Restaurant) => ({
-        disabled: record.name === "Disabled Restaurant",
-      }),
-    };
-  
     return (
       <>
         {contextHolder} {/* For message API */}

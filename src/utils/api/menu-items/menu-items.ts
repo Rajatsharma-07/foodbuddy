@@ -2,9 +2,33 @@ import { QueryParams } from "../../../@types/common/common";
 import { MenuItem } from "../../../@types/menu-item/menu-item";
 import axios from "../axios";
 
-export const fetchMenuItemList = async (category: string | null) => {
+export const fetchMenuItemList = async ({
+  category,
+  limit,
+  page,
+  not_in_array,
+}: QueryParams) => {
   try {
-    const response = await axios.get(`/menu-items/?&category=${category}`);
+    const params = new URLSearchParams();
+
+    if (category !== null && category !== undefined) {
+      params.append("category", category);
+    }
+
+    if (page) {
+      params.append("page", String(page));
+    }
+
+    if (limit) {
+      params.append("limit", String(limit));
+    }
+
+    if (not_in_array && not_in_array?.length > 0) {
+      not_in_array.forEach((id) => {
+        params.append("not_in_array", String(id));
+      });
+    }
+    const response = await axios.get(`/menu-items?${params.toString()}`);
     if (response?.data) {
       return response.data;
     }
@@ -26,7 +50,6 @@ export const retrieveMenuItem = async (id: number) => {
 
 export const createMenuItem = async (data: MenuItem) => {
   try {
-    console.log(data);
     const response = await axios.post("/menu-items", data, {
       headers: { "Content-Type": "multipart/form-data" },
     });

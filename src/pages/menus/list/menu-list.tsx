@@ -295,7 +295,6 @@ const Menus = () => {
           <Popconfirm
             cancelText="No"
             description="Are you sure to delete this menu?"
-            disabled={!menu.is_active}
             okText="Yes"
             placement="topLeft"
             title="Delete the menu?"
@@ -303,7 +302,6 @@ const Menus = () => {
           >
             <Button
               size="small"
-              disabled={!menu.is_active}
               icon={<DeleteOutlined />}
             >
               Delete
@@ -313,19 +311,6 @@ const Menus = () => {
       ),
     },
   ];
-
-  const rowSelection: TableProps<Menu>["rowSelection"] = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: Menu[]) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
-    },
-    getCheckboxProps: (record: Menu) => ({
-      disabled: record.name === "Disabled Menu",
-    }),
-  };
 
   return (
     <>

@@ -318,11 +318,6 @@ import { deleteMenuCategory, fetchMenuCategoryList } from "../../../utils/api/me
   
     const rowSelection: TableProps<MenuCategory>["rowSelection"] = {
       onChange: (selectedRowKeys: React.Key[], selectedRows: MenuCategory[]) => {
-        console.log(
-          `selectedRowKeys: ${selectedRowKeys}`,
-          "selectedRows: ",
-          selectedRows
-        );
       },
       getCheckboxProps: (record: MenuCategory) => ({
         disabled: record.name === "Disabled Menu Category",

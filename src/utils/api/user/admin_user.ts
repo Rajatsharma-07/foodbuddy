@@ -32,7 +32,7 @@ export const logout = async () => {
     setAdminSession(null);
     window.location.pathname = PATH_AUTH.adminLogin
   } catch (error) {
-    console.log("Error while logging out:", error);
+    throw error;
   }
 };
 

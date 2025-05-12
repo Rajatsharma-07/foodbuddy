@@ -116,8 +116,6 @@ const MenuItemForm = ({ add, detail, edit, menu_item_data }: Props) => {
           }
         });
 
-        console.log("vaklues", formData, fileList);
-
         await createMenuItem(formData);
         messageApi.success("Menu Item created successfully!");
         navigate(PATHS.menu_items.list);

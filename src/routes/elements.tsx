@@ -44,6 +44,8 @@ export const UserEdit = Loadable(lazy(() => import('../pages/users/edit/user-edi
 // Menu Pages for restaurant user
 export const MenuList = Loadable(lazy(() => import('../pages/menus/list/menu-list')));
 export const AddNewMenu = Loadable(lazy(() => import('../pages/menus/add/add-new-menu')));
+export const MenuDetail = Loadable(lazy(() => import('../pages/menus/detail/menu-detail')));
+export const MenuEdit = Loadable(lazy(() => import('../pages/menus/edit/menu-edit')));
 
 // Menu Category Pages for restaurant user
 export const MenuCategoryList = Loadable(lazy(() => import('../pages/menu-categories/list/menu-category-list')));

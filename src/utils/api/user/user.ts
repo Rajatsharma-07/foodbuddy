@@ -32,7 +32,7 @@ export const logout = async () => {
     setSession(null);
     window.location.pathname = PATH_AUTH.login;
   } catch (error) {
-    console.log("Error while logging out:", error);
+    throw error;
   }
 };
 

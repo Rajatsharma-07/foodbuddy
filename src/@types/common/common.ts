@@ -14,6 +14,8 @@ export type Sorter = {
 };
 
 export type QueryParams = {
+  category?: string | null;
+  not_in_array?: number[] | null;
   page?: number;
   limit?: number;
   sort_field?: string;
