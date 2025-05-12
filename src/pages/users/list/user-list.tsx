@@ -1,10 +1,9 @@
 import {
   CheckCircleOutlined,
   CloseCircleOutlined,
-  DeleteOutlined,
   EditOutlined,
   PlusOutlined,
-  SearchOutlined,
+  SearchOutlined
 } from "@ant-design/icons";
 import {
   Button,
@@ -12,16 +11,15 @@ import {
   Input,
   InputRef,
   message,
-  Popconfirm,
   Space,
   Table,
   TableColumnsType,
   TableColumnType,
   TableProps,
   Tooltip,
-  Typography,
+  Typography
 } from "antd";
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Pagination, Sorter } from "../../../@types/common/common";
 import { UserData } from "../../../@types/users/user";
@@ -215,7 +213,9 @@ const UserList = () => {
         );
       },
       filterIcon: (filtered: boolean) => (
-        <SearchOutlined style={{ color: filtered ? "var(--primary-color)" : undefined }} />
+        <SearchOutlined
+          style={{ color: filtered ? "var(--primary-color)" : undefined }}
+        />
       ),
       onFilterDropdownOpenChange: (visible) => {
         if (visible) {
@@ -321,19 +321,6 @@ const UserList = () => {
       ),
     },
   ];
-
-  const rowSelection: TableProps<UserData>["rowSelection"] = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: UserData[]) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
-    },
-    getCheckboxProps: (record: UserData) => ({
-      disabled: record.first_name === "Disabled User",
-    }),
-  };
 
   return (
     <>

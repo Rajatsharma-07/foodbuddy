@@ -372,19 +372,6 @@ const AdminUserList = () => {
     },
   ];
 
-  const rowSelection: TableProps<UserData>["rowSelection"] = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: UserData[]) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
-    },
-    getCheckboxProps: (record: UserData) => ({
-      disabled: record.first_name === "Disabled User",
-    }),
-  };
-
   return (
     <>
       {contextHolder} {/* For message API */}

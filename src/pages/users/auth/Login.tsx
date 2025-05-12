@@ -50,7 +50,6 @@ const Login = () => {
       navigate(PATHS.dashboard);
       updateUser();
     } catch (error: any) {
-      console.log(error);
       messageApi.error(error.message);
     }
   };
@@ -72,15 +71,14 @@ const Login = () => {
       setFormValues(values);
       showModal();
     } catch (error: any) {
-      console.log(error);
       messageApi.error(error.message);
     }
   };
 
   const onFinishFailed: FormProps<FieldType>["onFinishFailed"] = (
-    errorInfo
+    errorInfo: any
   ) => {
-    console.log("Failed:", errorInfo);
+    messageApi.error(errorInfo)
   };
 
   return (

@@ -1,4 +1,5 @@
 import { QueryParams } from "../../../@types/common/common";
+import { MenuItemJunction } from "../../../@types/menu-item-junction/menu-item-junction";
 import { Menu } from "../../../@types/menu/menu";
 import axios from "../axios";
 
@@ -40,8 +41,15 @@ export const retrieveMenu = async (id: number) => {
   }
 };
 
-export const createMenu = async (data: Menu) => {
+export const createMenu = async (
+  menuData: Menu,
+  menuItemData: MenuItemJunction
+) => {
   try {
+    let data = {
+      menu_data: menuData,
+      menu_item_data: menuItemData,
+    };
     const response = await axios.post("/menus", data);
     if (response?.data) {
       return response.data;
@@ -51,9 +59,17 @@ export const createMenu = async (data: Menu) => {
   }
 };
 
-export const updateMenu = async (id: number, menuData: Menu) => {
+export const updateMenu = async (
+  id: number,
+  menuData: Menu,
+  menuItemData: MenuItemJunction
+) => {
   try {
-    const response = await axios.put(`/menus/${id}`, menuData);
+    let data = {
+      menu_data: menuData,
+      menu_item_data: menuItemData,
+    };
+    const response = await axios.put(`/menus/${id}`, data);
     if (response?.data) {
       return response.data;
     }
@@ -65,6 +81,17 @@ export const updateMenu = async (id: number, menuData: Menu) => {
 export const deleteMenu = async (id: number) => {
   try {
     const response = await axios.delete(`/menus/${id}`);
+    if (response?.data) {
+      return response.data;
+    }
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const importMenuData = async (data: {name: string, menu_id: number}) => {
+  try {
+    const response = await axios.post(`/menus/import`, data);
     if (response?.data) {
       return response.data;
     }

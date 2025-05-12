@@ -38,7 +38,9 @@ const MenuItems = () => {
   const loadData = async (category:string | null = categoryFilter || null) => {
     setLoader(true);
     try {
-      const response = await fetchMenuItemList(category);
+      const response = await fetchMenuItemList({
+        category
+      });
       const categories = await fetchMenuCategoryList({});
       setMenuItemList(response.data);
       setCategoryList(categories.data);
