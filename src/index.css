@@ -15,6 +15,7 @@ code {
 
 :root {
   --primary-color: #ff5722;
+  --siderbar-bg-color: #222222;
   --text-color: #000;
   --bg-color: #fff;
   min-height: 100vh;

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { retrieveUser } from "../../../utils/api/user/admin_user";
 import { useParams } from "react-router-dom";
 import UserForm from "../common/user-form";
 import { message } from "antd";
+import { retrieveUser } from "../../../utils/api/user/user";
 const UserDetail = () => {
   const [userData, setUserData] = useState<any>({});
   const { id } = useParams<{ id: string }>();

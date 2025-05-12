@@ -37,5 +37,23 @@ export const PATHS = {
         new: path(PATH, 'users/new'),
         detail: (id: number) => path(PATH, `users/${id}`),
         edit: (id: number) => path(PATH, `users/${id}/edit`),
+    },
+    menus: {
+        list: path(PATH, 'menus'),
+        new: path(PATH, 'menus/new'),
+        detail: (id: number) => path(PATH, `menus/${id}`),
+        edit: (id: number) => path(PATH, `menus/${id}/edit`),
+    },
+    menu_categories: {
+        list: path(PATH, 'menu_categories'),
+        new: path(PATH, 'menu_categories/new'),
+        detail: (id: number) => path(PATH, `menu_categories/${id}`),
+        edit: (id: number) => path(PATH, `menu_categories/${id}/edit`),
+    },
+    menu_items: {
+        list: path(PATH, 'menu_items'),
+        new: path(PATH, 'menu_items/new'),
+        detail: (id: number) => path(PATH, `menu_items/${id}`),
+        edit: (id: number) => path(PATH, `menu_items/${id}/edit`),
     }
 }

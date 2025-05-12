@@ -282,6 +282,12 @@ const AdminUserList = () => {
       ...useColumnSearchProps("email"),
     },
     {
+      title: "Phone Number",
+      sorter: true,
+      dataIndex: "phonenumber",
+      ...useColumnSearchProps("phonenumber"),
+    },
+    {
       title: "Superuser status",
       dataIndex: "is_superuser",
       render: (is_superuser: boolean) =>

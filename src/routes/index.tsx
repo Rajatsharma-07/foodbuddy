@@ -1,12 +1,33 @@
-import React, { Suspense } from "react";
+import { Spin } from "antd";
+import { Suspense } from "react";
 import { Navigate, Outlet, useRoutes } from "react-router-dom";
+import AdminAuthGuard from "../guards/admin-auth-guard";
+import AdminGuestGuard from "../guards/admin-guest-guard";
+import AuthGuard from "../guards/auth-guard";
+import GuestGuard from "../guards/guest-guard";
+import AdminAuthLayout from "../layout/AdminAuthLayout";
+import AdminLayout from "../layout/AdminLayout";
+import ResLayout from "../layout/Layout";
 import {
+  AddNewMenu,
+  AddnewMenuCategory,
+  AddNewMenuItem,
   AddNewRestaurant,
   AddNewUser,
+  AdminAddNewUser,
   AdminLogin,
+  AdminUserDetail,
+  AdminUserEdit,
   AdminUserList,
   Dashboard,
   Login,
+  MenuCategoryDetail,
+  MenuCategoryEdit,
+  MenuCategoryList,
+  MenuItemDetail,
+  MenuItemEdit,
+  MenuItemsList,
+  MenuList,
   RestaurantDetail,
   RestaurantEdit,
   RestaurantList,
@@ -14,14 +35,6 @@ import {
   UserEdit,
   UserList,
 } from "./elements";
-import AdminLayout from "../layout/AdminLayout";
-import { Spin } from "antd";
-import AdminAuthLayout from "../layout/AdminAuthLayout";
-import AdminGuestGuard from "../guards/admin-guest-guard";
-import AdminAuthGuard from "../guards/admin-auth-guard";
-import GuestGuard from "../guards/guest-guard";
-import AuthGuard from "../guards/auth-guard";
-import ResLayout from "../layout/Layout";
 
 export default function Router() {
   return useRoutes([
@@ -55,7 +68,43 @@ export default function Router() {
             },
             {
               path: "users",
-              element: <UserList />,
+              children: [
+                { path: "", element: <Navigate to="list" replace /> },
+                { path: "list", element: <UserList /> },
+                { path: "new", element: <AddNewUser /> },
+                { path: ":id", element: <UserDetail /> },
+                { path: ":id/edit", element: <UserEdit /> },
+              ],
+            },
+            {
+              path: "menus",
+              children: [
+                { path: "", element: <Navigate to="list" replace /> },
+                { path: "list", element: <MenuList /> },
+                { path: "new", element: <AddNewMenu /> },
+                { path: ":id", element: <MenuList /> },
+                { path: ":id/edit", element: <MenuList /> },
+              ],
+            },
+            {
+              path: "menu_categories",
+              children: [
+                { path: "", element: <Navigate to="list" replace /> },
+                { path: "list", element: <MenuCategoryList /> },
+                { path: "new", element: <AddnewMenuCategory /> },
+                { path: ":id", element: <MenuCategoryDetail /> },
+                { path: ":id/edit", element: <MenuCategoryEdit /> },
+              ],
+            },
+            {
+              path: "menu_items",
+              children: [
+                { path: "", element: <Navigate to="list" replace /> },
+                { path: "list", element: <MenuItemsList /> },
+                { path: "new", element: <AddNewMenuItem /> },
+                { path: ":id", element: <MenuItemDetail /> },
+                { path: ":id/edit", element: <MenuItemEdit /> },
+              ],
             },
           ],
         },
@@ -101,9 +150,9 @@ export default function Router() {
                   children: [
                     { path: "", element: <Navigate to="list" replace /> },
                     { path: "list", element: <AdminUserList /> },
-                    { path: "new", element: <AddNewUser /> },
-                    { path: ":id", element: <UserDetail /> },
-                    { path: ":id/edit", element: <UserEdit /> },
+                    { path: "new", element: <AdminAddNewUser /> },
+                    { path: ":id", element: <AdminUserDetail /> },
+                    { path: ":id/edit", element: <AdminUserEdit /> },
                   ],
                 },
               ],

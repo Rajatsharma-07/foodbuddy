@@ -66,7 +66,7 @@ const ResHeader = () => {
   };
 
   return (
-    <Header className={`header ${isScrolled ? "scrolled" : "default"}`}>
+    <Header className={`header ${isScrolled ? "scrolled" : "default"}`} style={{zIndex: 2, backgroundColor: 'white'}}>
       <Flex
         gap="large"
         align="center"
@@ -96,6 +96,7 @@ const ResHeader = () => {
           <Dropdown
             menu={{ items, onClick: handleMenuClick }}
             trigger={["click"]}
+            overlayStyle={{zIndex: 3}}
           >
             <Tag
               style={{
@@ -112,7 +113,7 @@ const ResHeader = () => {
               <Avatar
                 size={30}
                 className="avatar"
-                style={{ backgroundColor: "#FF5722" }}
+                style={{ backgroundColor: "var(--primary-color)" }}
               >
                 {user?.first_name.charAt(0).toUpperCase()}
               </Avatar>

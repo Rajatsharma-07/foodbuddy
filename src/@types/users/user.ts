@@ -13,6 +13,7 @@ export type UserData = {
   first_name: string;
   last_name: string;
   email: string;
+  phonenumber: number;
   is_active: boolean;
   is_superuser: boolean;
   role_id: number;
@@ -45,6 +46,7 @@ export type UserCreateData = {
   first_name: string;
   last_name: string;
   email: string;
+  phonenumber: string;
   role_id: number;
   restaurant_id: number | null;
   is_superuser?: boolean;
@@ -54,6 +56,7 @@ export type UserUpdateData = {
   first_name: string;
   last_name: string;
   email: string;
+  phonenumber: string;
   role_id: number;
   restaurant_id: number | null;
   is_superuser?: boolean;

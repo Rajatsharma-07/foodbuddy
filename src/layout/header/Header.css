@@ -3,7 +3,7 @@
     padding: 15px;
     position: sticky;
     top: 0;
-    z-index: 1000;
+    z-index: 10000000000;
     transition: background-color 0.3s ease-in-out;
     border-bottom: 1px solid lightgray;
   }
@@ -11,6 +11,7 @@
   .header.scrolled {
     background-color: var(--bg-color-rgb);
     height: 100px;
+    z-index: 10000000000;
   }
   
   .header.default {

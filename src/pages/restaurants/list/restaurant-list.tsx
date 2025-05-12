@@ -22,7 +22,7 @@ import {
     Typography,
 } from "antd";
 import React, { useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Pagination, Sorter } from "../../../@types/common/common";
 import { Restaurant } from "../../../@types/restaurants/restaurant";
 import { PATH_ADMIN } from "../../../routes/paths";
@@ -229,7 +229,7 @@ import { deleteRestaurant, fetchRestaurantList } from "../../../utils/api/restau
         title: "ID",
         dataIndex: "id",
         sorter: true,
-        render: (id: number) => <a href={PATH_ADMIN.restaurants.detail(id)}>{id}</a>,
+        render: (id: number) => <Link className="primary-link" to={PATH_ADMIN.restaurants.detail(id)}>{id}</Link>,
         ...useColumnSearchProps("id"),
       },
       {
@@ -248,8 +248,9 @@ import { deleteRestaurant, fetchRestaurantList } from "../../../utils/api/restau
         sorter: true,
         render: (text: string, restaurant: Restaurant) => (
           <Tooltip title={text}>
-            <a
-              href={PATH_ADMIN.restaurants.detail(restaurant.id)}
+            <Link
+              className="primary-link"
+              to={PATH_ADMIN.restaurants.detail(restaurant.id)}
               style={{
                 whiteSpace: "nowrap",
                 overflow: "hidden",
@@ -259,7 +260,7 @@ import { deleteRestaurant, fetchRestaurantList } from "../../../utils/api/restau
               }}
             >
               {text}
-            </a>
+            </Link>
           </Tooltip>
         ),
         ...useColumnSearchProps("name"),

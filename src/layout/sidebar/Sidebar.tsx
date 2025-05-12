@@ -19,8 +19,8 @@ const Sidebar = () => {
     <Sider
       width={275}
       style={{
-        height: "100vh", // Ensure full height
-        backgroundColor: "#222222", // Apply correct background
+        height: "100vh",
+        backgroundColor: "var(--siderbar-bg-color)",
         color: "whitesmoke",
         overflow: "auto",
         position: "sticky",
@@ -35,7 +35,7 @@ const Sidebar = () => {
         <DarkModeLogo
           bgColor={"#222222"}
           foodColor={"white"}
-          buddyColor="#FF5722"
+          buddyColor="var(--primary-color)"
         />
       </div>
       <Menu

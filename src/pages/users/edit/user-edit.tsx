@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import UserForm from "../common/user-form";
-import { retrieveUser } from "../../../utils/api/user/admin_user";
+import { retrieveUser } from "../../../utils/api/user/user";
 import { useParams } from "react-router-dom";
 import { message } from "antd";
 

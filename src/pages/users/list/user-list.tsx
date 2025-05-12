@@ -283,14 +283,10 @@ const UserList = () => {
       ...useColumnSearchProps("email"),
     },
     {
-      title: "Superuser status",
-      dataIndex: "is_superuser",
-      render: (is_superuser: boolean) =>
-        is_superuser ? (
-          <CheckCircleOutlined style={{ color: "rgb(0, 200, 0)" }} />
-        ) : (
-          <CloseCircleOutlined style={{ color: "rgb(255, 0, 0)" }} />
-        ),
+      title: "Phone Number",
+      sorter: true,
+      dataIndex: "phonenumber",
+      ...useColumnSearchProps("phonenumber"),
     },
     {
       title: "Role",
@@ -300,26 +296,6 @@ const UserList = () => {
         <Typography style={{ textTransform: "capitalize" }}>
           {role?.name}
         </Typography>
-      ),
-    },
-    {
-      title: "Restaurant",
-      dataIndex: "restaurant",
-      sorter: true,
-      render: (restaurant: { name: string } | null) => (
-        <Tooltip title={restaurant?.name || ""}>
-          <Typography
-            style={{
-              whiteSpace: "nowrap",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              display: "inline-block",
-              maxWidth: 150,
-            }}
-          >
-            {restaurant?.name || ""}
-          </Typography>
-        </Tooltip>
       ),
     },
     {
