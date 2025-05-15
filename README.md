@@ -1,8 +1,8 @@
 # foodbuddy
 
-##Steps to run the project locally
+## Steps to run the project locally
 
-- Clone the repository in your local machine. 
+- Clone the repository on your local machine. 
   ``` bash
   git clone https://github.com/Rajatsharma-07/foodbuddy.git
 
