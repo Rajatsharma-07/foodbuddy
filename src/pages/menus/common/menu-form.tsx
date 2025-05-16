@@ -1,8 +1,13 @@
-import { DownloadOutlined, SaveOutlined } from "@ant-design/icons";
+import {
+  DownloadOutlined,
+  EditOutlined,
+  SaveOutlined,
+} from "@ant-design/icons";
 import {
   Button,
   Card,
   Col,
+  Divider,
   Flex,
   Form,
   Image,
@@ -214,6 +219,24 @@ const MenuForm = ({ add, detail, edit, menu_data }: Props) => {
     <>
       {contextHolder}
       <Card>
+        {detail && (
+          <>
+            <Flex
+              justify="space-between"
+              align="center"
+              style={{ marginTop: -20 }}
+            >
+              <Title level={3}>Menu Details</Title>
+              <Button
+                onClick={() => id && navigate(PATHS.menus.edit(Number(id)))}
+                icon={<EditOutlined />}
+              >
+                Edit
+              </Button>
+            </Flex>
+            <Divider orientation="center" style={{ marginTop: 0 }} />
+          </>
+        )}
         <Form
           layout="vertical"
           form={form}
@@ -349,7 +372,7 @@ const MenuForm = ({ add, detail, edit, menu_data }: Props) => {
                               color: "var(--primary-color)",
                             }}
                           >
-                            {`₹ ${item.menu_item.default_price}`}
+                            {`₹ ${item.price}`}
                           </Title>
                         </Flex>
                       </Card>
