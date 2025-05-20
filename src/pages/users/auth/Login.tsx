@@ -91,18 +91,18 @@ const Login = () => {
     >
       {contextHolder}
       <Image
-        src="/login-background.jpg"
+        src="./Food_Buddy_login_background.jpg"
         width="100vw"
         height="100vh"
         preview={false}
-        style={{ position: "relative" }}
+        style={{ position: "relative", opacity: 0.7 }}
       />
       <Card
         className="custom-login-card"
         style={{
-          width: "30vw",
-          position: "absolute",
-          backgroundColor: "rgba(0, 255, 255, 0.9)",
+          width: "35vw",
+          position: "absolute"
+          
         }}
       >
         <Form
@@ -116,7 +116,7 @@ const Login = () => {
           autoComplete="off"
         >
           <Form.Item<FieldType>
-            label={<span style={{ color: "black" }}>Phone Number</span>}
+            label={<span style={{ color: "white" }}>Phone Number</span>}
             name="phonenumber"
             className="custom-phone-input"
             rules={[
@@ -136,7 +136,7 @@ const Login = () => {
             valuePropName="checked"
             label={null}
           >
-            <Checkbox style={{ color: "black" }}>Remember me</Checkbox>
+            <Checkbox style={{ color: "white" }}>Remember me</Checkbox>
           </Form.Item>
 
           <Form.Item label={null}>
