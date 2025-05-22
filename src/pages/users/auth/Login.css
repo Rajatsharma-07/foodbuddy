@@ -11,6 +11,6 @@
   color: red !important;
 }
 .ant-btn-primary:hover{
-  color: rgb(255, 87, 34) !important;
+  color: var(--primary-color) !important;
   background-color: white !important;
 }
