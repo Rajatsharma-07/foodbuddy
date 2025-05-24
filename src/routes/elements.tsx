@@ -58,3 +58,16 @@ export const MenuItemsList = Loadable(lazy(() => import('../pages/menu-items/lis
 export const AddNewMenuItem = Loadable(lazy(() => import('../pages/menu-items/add/add-new-menu-item')));
 export const MenuItemDetail = Loadable(lazy(() => import('../pages/menu-items/detail/menu-item-detail')));
 export const MenuItemEdit = Loadable(lazy(() => import('../pages/menu-items/edit/menu-item-edit')));
+
+// Table Category Pages for restaurant user
+export const TableCategoryList = Loadable(lazy(() => import('../pages/table-categories/list/table-category-list')));
+export const AddNewTableCategory = Loadable(lazy(() => import('../pages/table-categories/add/add-new-table-category')));
+export const TableCategoryDetail = Loadable(lazy(() => import('../pages/table-categories/detail/table-category-detail')));
+export const TableCategoryEdit = Loadable(lazy(() => import('../pages/table-categories/edit/table-category-edit')));
+
+// Table Pages for restaurant user
+export const TableList = Loadable(lazy(() => import('../pages/tables/list/table-list')));
+export const AddNewTable = Loadable(lazy(() => import('../pages/tables/add/add-new-table')));
+export const TableDetail = Loadable(lazy(() => import('../pages/tables/detail/table-detail')));
+export const TableEdit = Loadable(lazy(() => import('../pages/tables/edit/table-edit')));
+

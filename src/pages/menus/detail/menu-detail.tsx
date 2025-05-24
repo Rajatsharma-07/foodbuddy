@@ -1,6 +1,8 @@
-import { message } from "antd";
+import { Divider, message } from "antd";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Header from "../../../assets/common/header";
+import { PATHS } from "../../../routes/paths";
 import { retrieveMenu } from "../../../utils/api/menu/menu";
 import MenuForm from "../common/menu-form";
 const MenuDetail = () => {
@@ -25,6 +27,11 @@ const MenuDetail = () => {
   return (
     <>
       {contextHolder}
+      <Header
+        title="Menu Details"
+        button_text="Edit"
+        on_click_url={PATHS.menus.edit(Number(id))}
+      />
       <MenuForm add={false} detail={true} edit={false} menu_data={menuData} />
     </>
   );

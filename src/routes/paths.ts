@@ -38,6 +38,18 @@ export const PATHS = {
         detail: (id: number) => path(PATH, `users/${id}`),
         edit: (id: number) => path(PATH, `users/${id}/edit`),
     },
+    tables: {
+        list: path(PATH, 'tables'),
+        new: path(PATH, 'tables/new'),
+        detail: (id: number) => path(PATH, `tables/${id}`),
+        edit: (id: number) => path(PATH, `tables/${id}/edit`),
+    },
+    table_categories: {
+        list: path(PATH, 'table_categories'),
+        new: path(PATH, 'table_categories/new'),
+        detail: (id: number) => path(PATH, `table_categories/${id}`),
+        edit: (id: number) => path(PATH, `table_categories/${id}/edit`),
+    },
     menus: {
         list: path(PATH, 'menus'),
         new: path(PATH, 'menus/new'),

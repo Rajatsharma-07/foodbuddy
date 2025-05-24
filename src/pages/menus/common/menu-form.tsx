@@ -1,13 +1,11 @@
 import {
   DownloadOutlined,
-  EditOutlined,
-  SaveOutlined,
+  SaveOutlined
 } from "@ant-design/icons";
 import {
   Button,
   Card,
   Col,
-  Divider,
   Flex,
   Form,
   Image,
@@ -20,7 +18,7 @@ import {
   Tabs,
   TabsProps,
   Tooltip,
-  Typography,
+  Typography
 } from "antd";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -36,6 +34,7 @@ import {
   importMenuData,
   updateMenu,
 } from "../../../utils/api/menu/menu";
+import FoodTypeIcon from "../../common/food-type-icon";
 import AddedItemsList from "./added-item-list";
 import OtherItemsList from "./other-item-list";
 
@@ -219,24 +218,6 @@ const MenuForm = ({ add, detail, edit, menu_data }: Props) => {
     <>
       {contextHolder}
       <Card>
-        {detail && (
-          <>
-            <Flex
-              justify="space-between"
-              align="center"
-              style={{ marginTop: -20 }}
-            >
-              <Title level={3}>Menu Details</Title>
-              <Button
-                onClick={() => id && navigate(PATHS.menus.edit(Number(id)))}
-                icon={<EditOutlined />}
-              >
-                Edit
-              </Button>
-            </Flex>
-            <Divider orientation="center" style={{ marginTop: 0 }} />
-          </>
-        )}
         <Form
           layout="vertical"
           form={form}
@@ -336,7 +317,12 @@ const MenuForm = ({ add, detail, edit, menu_data }: Props) => {
                                 >
                                   {item.menu_item.name}
                                 </Title>
-                                <Text type="danger">{`(${item.menu_item.category?.name})`}</Text>
+                                <Flex justify="start" align="center" gap={5}>
+                                  <FoodTypeIcon
+                                    type={item.menu_item.food_type}
+                                  />
+                                  <Text type="danger">{`(${item.menu_item.category?.name})`}</Text>
+                                </Flex>
                               </Link>
                             </Flex>
                           </Flex>
