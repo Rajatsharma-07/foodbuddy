@@ -20,3 +20,28 @@ export const ROLES = [
     db_name: "captain",
   },
 ];
+
+export enum TABLE_STATUS {
+  AVAILABLE = "available",
+  OCCUPIED = "occupied",
+  RESERVED = "reserved",
+  CLEANING = "cleaning",
+  BLOCKED = "blocked",
+  ORDER_PLACED = "order_placed",
+  FOOD_SERVED = "food_served",
+  BILLING_IN_PROGRESS = "billing_in_progress",
+  PAYMENT_PENDING = "payment_pending",
+  PAYMENT_RECEIVED = "payment_received",
+}
+
+export const FOOD_TYPE_LABEL = {
+  veg: "Veg",
+  "non_veg": "Non Veg",
+  egg: "Egg",
+}
+
+export enum FOOD_TYPE {
+  VEG = "veg",
+  NON_VEG = "non_veg",
+  EGG = "egg"
+}

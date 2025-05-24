@@ -1,5 +1,5 @@
 import { CheckCircleOutlined, CloseCircleOutlined } from "@ant-design/icons";
-import { Table, Typography } from "antd";
+import { Flex, Table, Typography } from "antd";
 import { useCallback, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { MenuItem } from "../../../@types/menu-item/menu-item";
@@ -16,6 +16,8 @@ import { MessageInstance } from "antd/es/message/interface";
 import { Pagination } from "../../../@types/common/common";
 import { MenuItemJunction } from "../../../@types/menu-item-junction/menu-item-junction";
 import { fetchMenuItemList } from "../../../utils/api/menu-items/menu-items";
+import { FOOD_TYPE, FOOD_TYPE_LABEL } from "../../../utils/constants/constants";
+import FoodTypeIcon from "../../common/food-type-icon";
 
 type Props = {
   messageApi: MessageInstance;
@@ -167,6 +169,16 @@ const OtherItemsList = ({
             </Link>
           </Tooltip>
         </>
+      ),
+    },
+    {
+      title: "Food Type",
+      dataIndex: "food_type",
+      render: (food_type: FOOD_TYPE) => (
+        <Flex justify="start" align="center" gap={5}>
+          <FoodTypeIcon type={food_type} />
+          <Text>{FOOD_TYPE_LABEL[food_type]}</Text>
+        </Flex>
       ),
     },
     {

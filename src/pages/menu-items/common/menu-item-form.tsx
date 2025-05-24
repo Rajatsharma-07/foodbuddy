@@ -28,6 +28,7 @@ import {
   updateMenuItem,
 } from "../../../utils/api/menu-items/menu-items";
 import { PlusOutlined } from "@ant-design/icons";
+import { FOOD_TYPE, FOOD_TYPE_LABEL } from "../../../utils/constants/constants";
 
 const { Option } = Select;
 
@@ -83,6 +84,7 @@ const MenuItemForm = ({ add, detail, edit, menu_item_data }: Props) => {
         description: menu_item_data.description,
         default_price: menu_item_data.default_price,
         category_id: menu_item_data.category_id,
+        food_type: menu_item_data.food_type,
         is_available: menu_item_data.is_available || false,
         is_active: menu_item_data.is_active || false,
       });
@@ -269,15 +271,42 @@ const MenuItemForm = ({ add, detail, edit, menu_item_data }: Props) => {
             </Col>
             <Col span={12}>
               <Form.Item
-                label="Category"
-                name="category_id"
-                rules={[{ required: true, message: "Please enter the city" }]}
+                label="Food Type"
+                name="food_type"
+                rules={[{ required: true, message: "Please enter the food type" }]}
               >
                 {!detail ? (
                   <Select
                     variant={detail ? "filled" : "outlined"}
                     disabled={isDisabled}
-                    placeholder="Select role"
+                    placeholder="Select food type"
+                  >
+                    {Object.values(FOOD_TYPE).map((food_type: FOOD_TYPE) => (
+                      <Option key={food_type} value={food_type}>
+                        {FOOD_TYPE_LABEL[food_type]}
+                      </Option>
+                    ))}
+                  </Select>
+                ) : (
+                  <Input
+                    variant={detail ? "filled" : "outlined"}
+                    disabled={isDisabled}
+                    style={{ textTransform: "capitalize" }}
+                  />
+                )}
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Category"
+                name="category_id"
+                rules={[{ required: true, message: "Please enter the category" }]}
+              >
+                {!detail ? (
+                  <Select
+                    variant={detail ? "filled" : "outlined"}
+                    disabled={isDisabled}
+                    placeholder="Select category"
                     loading={loader}
                   >
                     {menuCategoryList.map((menu_category: MenuCategory) => (
@@ -290,6 +319,7 @@ const MenuItemForm = ({ add, detail, edit, menu_item_data }: Props) => {
                   <Input
                     variant={detail ? "filled" : "outlined"}
                     disabled={isDisabled}
+                    style={{ textTransform: "capitalize" }}
                   />
                 )}
               </Form.Item>

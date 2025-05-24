@@ -4,6 +4,7 @@ import axios from "../axios";
 
 export const fetchMenuItemList = async ({
   category,
+  foodType,
   limit,
   page,
   not_in_array,
@@ -13,6 +14,10 @@ export const fetchMenuItemList = async ({
 
     if (category !== null && category !== undefined) {
       params.append("category", category);
+    }
+
+    if (foodType !== null && foodType !== undefined) {
+      params.append("food_type", foodType);
     }
 
     if (page) {

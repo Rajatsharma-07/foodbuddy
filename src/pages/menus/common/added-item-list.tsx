@@ -17,6 +17,8 @@ import {
 import { MessageInstance } from "antd/es/message/interface";
 import { MenuItemJunction } from "../../../@types/menu-item-junction/menu-item-junction";
 import { deleteMenuItemJunctionList } from "../../../utils/api/menu-item-junction/menu-item-junction";
+import { FOOD_TYPE, FOOD_TYPE_LABEL } from "../../../utils/constants/constants";
+import FoodTypeIcon from "../../common/food-type-icon";
 
 type Props = {
   messageApi: MessageInstance;
@@ -29,7 +31,7 @@ type Props = {
   loader: boolean;
 };
 
-const {Text} = Typography;
+const { Text } = Typography;
 
 const AddedItemsList = ({
   messageApi,
@@ -146,11 +148,21 @@ const AddedItemsList = ({
       ),
     },
     {
+      title: "Food Type",
+      dataIndex: "food_type",
+      render: (food_type: FOOD_TYPE, menu_item_junction: MenuItemJunction) => (
+        <Flex justify="start" align="center" gap={5}>
+          <FoodTypeIcon type={menu_item_junction.menu_item.food_type} />
+          <Text>{FOOD_TYPE_LABEL[menu_item_junction.menu_item.food_type]}</Text>
+        </Flex>
+      ),
+    },
+    {
       title: "Category",
       dataIndex: "category",
       render: (category: any, menu_item_junction: MenuItemJunction) => (
         <Text>{menu_item_junction?.menu_item?.category?.name}</Text>
-      )
+      ),
     },
     {
       title: "Price",

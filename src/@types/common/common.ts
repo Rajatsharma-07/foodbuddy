@@ -1,3 +1,5 @@
+import { FOOD_TYPE } from "../../utils/constants/constants";
+
 export type ApiErrorType = {
   status: number;
   message: string;
@@ -15,6 +17,7 @@ export type Sorter = {
 
 export type QueryParams = {
   category?: string | null;
+  foodType?: FOOD_TYPE | null;
   not_in_array?: number[] | null;
   page?: number;
   limit?: number;
